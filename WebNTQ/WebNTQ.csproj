@@ -357,6 +357,7 @@
     <Content Include="Assets\admin\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Assets\admin\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Assets\admin\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\HomeAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -388,7 +389,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Assets\client\" />
     <Folder Include="Models\" />
   </ItemGroup>
