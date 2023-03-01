@@ -21,15 +21,22 @@ namespace WebNTQ.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, model.Password);
+                var result = dao.Login(model.UserName, model.Password); //.email
                 if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
-                    var userSession = new UserLogin();
+                    var userSession = new UserLogin();// seesi email
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
-                    return RedirectToAction("Index", "HomeAdmin");
+                    if (user.Role == 1)
+                    {
+                        return RedirectToAction("Index", "HomeAdmin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "HomeUser");
+                    }
                 }
                 else if (result == 0)
                 {
@@ -37,7 +44,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                 }
                 else if (result == -1)
                 {
-                    ModelState.AddModelError("", "Tài khoản bị khoá!");
+                    ModelState.AddModelError("", "Tài khoản bị xoá!");
                 }
                 else if (result == -2)
                 {

@@ -24,9 +24,9 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
-        public int Login(string userName, string passWord)
+        public int Login(string userName, string passWord) //email
         {
-            var result = db.Users.SingleOrDefault(x => x.UserName == userName);
+            var result = db.Users.SingleOrDefault(x => x.UserName == userName ); // || email
             if (result == null)
             {
                 return 0;

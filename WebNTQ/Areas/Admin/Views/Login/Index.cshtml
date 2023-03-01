@@ -31,6 +31,10 @@
         .text-right {
             float: right;
         }
+        .label-input100 {
+            font-size:16px;
+        }     
+        
     </style>
 </head>
 <body style="background-image: url('/Assets/admin/img/bg-01.jpg'); background-repeat: no-repeat; background-size: cover;">
@@ -46,18 +50,18 @@
 
                     <div class="wrap-input100 validate-input m-b-23" >
                         <span class="label-input100" style="">Username</span>
-                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @autofocus = "autofocus" })
-                       @* <span class="focus-input100" data-symbol="&#xf206;"></span>*@
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
+                        <span class="focus-input100" data-symbol="&#xf206;"></span>
                     </div>
                     <div class="wrap-input100 validate-input" >
                         <span class="label-input100">Password</span>
-                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
-                       @* <span class="focus-input100" data-symbol="&#xf190;"></span>*@
+                        @Html.TextBoxFor(model => model.Password, new { @class = "input100", @type= "password", @placeholder = "Type your password" })
+                        <span class="focus-input100" data-symbol="&#xf190;"></span>
                     </div>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                     <div class="p-t-8 p-b-31 forgot">
-                        <label>
+                        <label class="form-label">
                             @Html.CheckBoxFor(model => model.RememberMe)Remember Me
                         </label>
                         <a class="text-right" asp-page="./ForgotPassword">
