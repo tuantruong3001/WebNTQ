@@ -6,12 +6,13 @@ using System.Web.Mvc;
 
 namespace WebNTQ.Areas.Admin.Controllers
 {
-    public class HomeUserController : Controller
+    public class HomeUserController : BaseController
     {
         // GET: Admin/HomeUser
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }

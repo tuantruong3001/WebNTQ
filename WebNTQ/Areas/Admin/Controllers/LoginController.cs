@@ -21,12 +21,13 @@ namespace WebNTQ.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, model.Password); //.email
+                var result = dao.Login( model.Password,model.Email); 
                 if (result == 1)
                 {
-                    var user = dao.GetById(model.UserName);
-                    var userSession = new UserLogin();// seesi email
+                    var user = dao.GetByEmail(model.Email);
+                    var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
+                    userSession.Email = user.Email;
                     userSession.UserID = user.ID;
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     if (user.Role == 1)
