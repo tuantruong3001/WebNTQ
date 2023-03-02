@@ -19,10 +19,6 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-       /* [HttpPost]
-        public ActionResult CreateUser(RegisterModel registerModel)
-        {
-
-        }*/
+      
     }
 }
