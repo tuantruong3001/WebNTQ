@@ -1,6 +1,7 @@
 ﻿using Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,17 @@ namespace Model.Dao
         {
             db = new NtqDbContext();
         }
+        // thêm mới
         public int Insert(User entity)
         {
             db.Users.Add(entity);
+            db.SaveChanges();
+            return entity.ID;
+        }
+        // cập nhật
+        public int Update(User entity)
+        {
+            db.Users.AddOrUpdate(entity);
             db.SaveChanges();
             return entity.ID;
         }
