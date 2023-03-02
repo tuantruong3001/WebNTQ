@@ -77,12 +77,12 @@
                     </div>
                     <div class="flex-col-c p-t-155">
                         <span class="txt1 p-b-17">
-                            <a class="nav-link text-right" asp-area="" asp-controller="Home" asp-action="Index">Quay lại trang chủ</a>
+                            <a class="nav-link text-right" href="@Url.Action("Index", "Home", new { area = "" })">Back to Homepage</a>
                         </span>
                         <span class="txt1 p-b-17">
                             Don't have an account?
                         </span>
-                        @Html.ActionLink("Register", "Index", "Register", new { area = "Admin", @class = "txt2" })                        
+                        <a class="txt2" href="/Admin/Register">Register</a>
                     </div>
                 }
             </div>

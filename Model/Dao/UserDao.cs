@@ -24,21 +24,22 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
         }
-        public int Register(string email, string user)
+        public int RegisterCheck(string email, string user)
         {
+           
             var emailExists = db.Users.SingleOrDefault(x => x.Email == email);
             var usernameExists = db.Users.SingleOrDefault(x => x.UserName == user);
             if (emailExists == null && usernameExists == null)
             {
-                return 1; // Không có email hoặc username trong cơ sở dữ liệu
+                return 1; 
             }
-            else if (emailExists == null)
+            else if (emailExists != null)
             {
-                return 0; // Không có email trong cơ sở dữ liệu
+                return 0; // trung email
             }
             else
             {
-                return -1; // Email đã tồn tại trong cơ sở dữ liệu
+                return -1; // trùng user
             }
         }
         public int Login(string passWord, string email)
