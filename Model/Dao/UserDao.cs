@@ -35,7 +35,7 @@ namespace Model.Dao
             }
             else if (emailExists != null)
             {
-                return 0; // trung email
+                return 0; // trùng email
             }
             else
             {

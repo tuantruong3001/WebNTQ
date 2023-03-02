@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeUserController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RegisterController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Areas\Admin\Models\RegisterModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
@@ -395,6 +396,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Assets\client\" />
     <Folder Include="Models\" />
   </ItemGroup>
