@@ -6,4 +6,33 @@
 
 @section header{
     Trang chủ Admin
-    }
+}
+@section sidebar{
+    <div class="sb-sidenav-menu-heading"></div>
+    <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })"">
+        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+        Home
+    </a>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+        List User
+
+    </a>
+
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+        List Reviews
+
+    </a>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+        List Product
+
+    </a>
+    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+        My Profile
+
+    </a>
+
+}

@@ -15,12 +15,13 @@ namespace WebNTQ.Areas.Admin.Models
 
         [Required(ErrorMessage = "UserName không được để trống!")]
         [RegularExpression(@"^.{2,10}$", ErrorMessage = "{0} chỉ từ 2 đến 10 ký tự.")]
-       
+
         public string UserName { get; set; }
 
         [RegularExpression(@"^.{8,20}$", ErrorMessage = "{0} chỉ từ 8 đến 20 ký tự.")]
         [Required(ErrorMessage = "Password không được để trống!")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "ConfirmPassword không được để trống!")]
         public string ConfirmPassword { get; set; }
 
     }
