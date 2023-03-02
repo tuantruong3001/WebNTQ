@@ -4,35 +4,103 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-@section header{
-    Trang chủ Admin
-}
 @section sidebar{
-    <div class="sb-sidenav-menu-heading"></div>
-    <a class="nav-link" href="@Url.Action("Index", "Home", new { area = "" })"">
-        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-        Home
-    </a>
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-        List User
+    <li class="nav-item">
+        <a class="nav-link" href="index.html">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Home</span>
+        </a>
+    </li>
 
-    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        List Reviews
+    <!-- Heading -->
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link " href="#">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>List Users</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link " href="#">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>List Reviews</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link " href="#">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>List Products</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link " href="#">
+            <i class="fas fa-fw fa-table"></i>
+            <span>My Profile</span>
+        </a>
+    </li>
 
-    </a>
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        List Product
+}
+@section bodymain{
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
 
-    </a>
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        My Profile
+            <div class="col-lg-6">
+                <div class="p-5">
+                    <h1 class="h4 text-gray-900 mb-2">
+                        My Profile
+                    </h1>
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
 
-    </a>
+                        <div class="form-group">
+                            UserName
+                            <input type="email" class="form-control form-control-user"
+                                   id="exampleInputEmail" aria-describedby="emailHelp" />
 
+                        </div>
+                        <div class="form-group">
+                            Password
+                            <input type="email" class="form-control form-control-user"
+                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+
+                        </div>
+                        <div class="form-group">
+                            Confirm Password
+                            <input type="email" class="form-control form-control-user"
+                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+
+                        </div>
+                        <div class="form-group">
+                            Email
+                            <input type="email" class="form-control form-control-user" readonly
+                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+                        </div>
+                        <div class="form-group">
+                            Type
+                            <input type="email" class="form-control form-control-user" readonly
+                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+
+                        </div>
+                        <a href="#" class="btn btn-primary btn-user btn-block">
+                            Update
+                        </a>
+                        <a href="#" style="background-color:#e74a3b;" class="btn btn-primary btn-user btn-block icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Logout
+                        </a>
+                    }
+                    <hr>
+
+                </div>
+            </div>
+        </div>
+    </div>
 }
