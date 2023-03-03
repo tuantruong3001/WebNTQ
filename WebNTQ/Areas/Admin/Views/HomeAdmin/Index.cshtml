@@ -59,25 +59,30 @@
                     @using (Html.BeginForm("Edit", "HomeAdmin", FormMethod.Post))
                     {
                         @Html.ValidationSummary(false, "", new { @class = "text-danger" });
-                        <div class="form-group">
-                            UserName
-                            @Html.TextBoxFor(model => model.UserName, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
+                <div class="form-group">
+                    UserName
+                    @Html.LabelFor(model => model.UserName, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-user"})
 
-                        </div>
-                        <div class="form-group">
-                            Password
-                            @Html.TextBoxFor(model => model.Email, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
+                </div>
+                <div class="form-group">
+                    Password
+                    @Html.LabelFor(model => model.Password, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type your password" })
 
-                        </div>
-                        <div class="form-group">
-                            Confirm Password
-                            @Html.TextBoxFor(model => model.Password, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
+                </div>
+                <div class="form-group">
+                    Confirm Password
+                    @Html.LabelFor(model => model.Password, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Type your confirm password" })
 
-                        </div>
-                        <div class="form-group">
-                            Email
-                            
-                        </div>
+                </div>
+                <div class="form-group">
+                    Email
+                    @Html.LabelFor(model => model.Email, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @autofocus = "autofocus", @readonly = "true" })
+
+                </div>
                         <div class="form-group">
                             Type
                             <input type="email" class="form-control form-control-user" readonly

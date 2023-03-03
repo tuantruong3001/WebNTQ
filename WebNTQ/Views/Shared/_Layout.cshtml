@@ -3,26 +3,23 @@
 <head>
     <!-- basic -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- mobile metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+   <!-- mobile metas -->
     <!-- site metas -->
-    <title>Eflyer</title>
+    <title>NTQ-Shop</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="TvT">
     <!-- bootstrap css -->
-    <link rel="stylesheet" type="text/css" href="/Assets/client/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/css/bootstrap.min.css">
     <!-- style css -->
-    <link rel="stylesheet" type="text/css" href="/Assets/client/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/css/style.css">
     <!-- Responsive-->
-    <link rel="stylesheet" href="/Assets/client/css/responsive.css">
+    <link rel="stylesheet" href="~/Assets/css/responsive.css">
     <!-- fevicon -->
-    <link rel="icon" href="/Assets/client/images/fevicon.png" type="image/gif" />
+    <link rel="icon" href="~/Assets/images/fevicon.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" href="/Assets/client/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="~/Assets/css/jquery.mCustomScrollbar.min.css">
     <!-- Tweaks for older IEs-->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <!-- fonts -->
@@ -32,8 +29,8 @@
     <!--  -->
     <!-- owl stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
-    <link rel="stylesheet" href="/Assets/client/css/owl.carousel.min.css">
-    <link rel="stylesoeet" href="/Assets/client/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/Assets/css/owl.carousel.min.css">
+    <link rel="stylesoeet" href="~/Assets/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 </head>
 <body>
@@ -63,7 +60,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="logo"><a href="index.html"><img src="/Assets/client/images/logo.png"></a></div>
+                        <div class="logo"><a href="index.html"><img src="~/Assets/images/logo.png"></a></div>
                     </div>
                 </div>
             </div>
@@ -75,12 +72,13 @@
                 <div class="containt_main">
                     <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        @Html.ActionLink("Login", "Index", "HomeAdmin", new { area = "Admin" }, new { @class = "btn btn-primary" })
-                        <a href="fashion.html">Fashion</a>
+                 
+                        <a href="/Admin/Login/Index">Login</a>
+                        <a href="">Fashion</a>
                         <a href="electronic.html">Electronic</a>
                         <a href="jewellery.html">Jewellery</a>
                     </div>
-                    <span class="toggle_icon" onclick="openNav()"><img src="/Assets/client/images/toggle-icon.png"></span>
+                    <span class="toggle_icon" onclick="openNav()"><img src="~/Assets/images/toggle-icon.png"></span>
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             All Category
@@ -105,11 +103,11 @@
                     <div class="header_box">
                         <div class="lang_box ">
                             <a href="#" title="Language" class="nav-link" data-toggle="dropdown" aria-expanded="true">
-                                <img src="/Assets/client/images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
+                                <img src="~/Assets/images/flag-uk.png" alt="flag" class="mr-2 " title="United Kingdom"> English <i class="fa fa-angle-down ml-2" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu ">
                                 <a href="#" class="dropdown-item">
-                                    <img src="/Assets/client/images/flag-france.png" class="mr-2" alt="flag">
+                                    <img src="~/Assets/images/flag-france.png" class="mr-2" alt="flag">
                                     French
                                 </a>
                             </div>
@@ -144,7 +142,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt"> @Html.ActionLink("Login", "Index", "HomeAdmin", new { area = "Admin" }, new { @class = "btn btn-primary" })</div>
+                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a></div>
                                 </div>
                             </div>
                         </div>
@@ -152,7 +150,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt"> @Html.ActionLink("Login", "Index", "HomeAdmin", new { area = "Admin" }, new { @class = "btn btn-primary" })</div>
+                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a> </div>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +158,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt">@Html.ActionLink("Login", "Index", "HomeAdmin", new { area = "Admin" }, new { @class = "nav-link" })</div>
+                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a></div>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +188,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man T -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/tshirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/tshirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -201,7 +199,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/dress-shirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/dress-shirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -212,7 +210,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Woman Scart</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/women-clothes-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/women-clothes-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -232,7 +230,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man T -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/tshirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/tshirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -243,7 +241,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/dress-shirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/dress-shirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -254,7 +252,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Woman Scart</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/women-clothes-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/women-clothes-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -274,7 +272,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man T -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/tshirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/tshirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -285,7 +283,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Man -shirt</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/dress-shirt-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/dress-shirt-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -296,7 +294,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Woman Scart</h4>
                                         <p class="price_text">Price  <span style="color: #262626;">$ 30</span></p>
-                                        <div class="tshirt_img"><img src="/Assets/client/images/women-clothes-img.png"></div>
+                                        <div class="tshirt_img"><img src="~/Assets/images/women-clothes-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -330,7 +328,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Laptop</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/laptop-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/images/laptop-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -341,7 +339,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Mobile</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/mobile-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/images/mobile-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -352,7 +350,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Computers</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/computer-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/images/computer-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -372,7 +370,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Laptop</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/laptop-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/laptop-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -383,7 +381,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Mobile</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/mobile-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/mobile-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -394,7 +392,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Computers</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/computer-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/computer-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -414,7 +412,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Laptop</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/laptop-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/laptop-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -425,7 +423,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Mobile</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/mobile-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/mobile-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -436,7 +434,7 @@
                                     <div class="box_main">
                                         <h4 class="shirt_text">Computers</h4>
                                         <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="electronic_img"><img src="/Assets/client/images/computer-img.png"></div>
+                                        <div class="electronic_img"><img src="~/Assets/client/images/computer-img.png"></div>
                                         <div class="btn_main">
                                             <div class="buy_bt"><a href="#">Buy Now</a></div>
                                             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -456,154 +454,10 @@
             </a>
         </div>
     </div>
-    <!-- electronic section end -->
-    <!-- jewellery  section start -->
-    <div class="jewellery_section">
-        <div id="jewellery_main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <h1 class="fashion_taital">Jewellery Accessories</h1>
-                        <div class="fashion_section_2">
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Jumkas</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/jhumka-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Necklaces</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/neklesh-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Kangans</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/kangan-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <h1 class="fashion_taital">Jewellery Accessories</h1>
-                        <div class="fashion_section_2">
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Jumkas</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/jhumka-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Necklaces</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/neklesh-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Kangans</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/kangan-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <h1 class="fashion_taital">Jewellery Accessories</h1>
-                        <div class="fashion_section_2">
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Jumkas</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/jhumka-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Necklaces</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/neklesh-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-4">
-                                    <div class="box_main">
-                                        <h4 class="shirt_text">Kangans</h4>
-                                        <p class="price_text">Start Price  <span style="color: #262626;">$ 100</span></p>
-                                        <div class="jewellery_img"><img src="/Assets/client/images/kangan-img.png"></div>
-                                        <div class="btn_main">
-                                            <div class="buy_bt"><a href="#">Buy Now</a></div>
-                                            <div class="seemore_bt"><a href="#">See More</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#jewellery_main_slider" role="button" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#jewellery_main_slider" role="button" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-            </a>
-            <div class="loader_main">
-                <div class="loader"></div>
-            </div>
-        </div>
-    </div>
-    <!-- jewellery  section end -->
     <!-- footer section start -->
     <div class="footer_section layout_padding">
         <div class="container">
-            <div class="footer_logo"><a href="index.html"><img src="/Assets/client/images/footer-logo.png"></a></div>
+            <div class="footer_logo"><a href="index.html"><img src="~/Assets/client/images/footer-logo.png"></a></div>
             <div class="input_bt">
                 <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
                 <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
@@ -624,19 +478,19 @@
     <!-- copyright section start -->
     <div class="copyright_section">
         <div class="container">
-            <p class="copyright_text">© 2020 All Rights Reserved. Design by <a href="https://html.design">Free html  Templates</a></p>
+            <p class="copyright_text">© 2023 All Rights Reserved. Design by <a href="#">TvT</a></p>
         </div>
     </div>
     <!-- copyright section end -->
     <!-- Javascript files-->
-    <script src="/Assets/client/js/jquery.min.js"></script>
-    <script src="/Assets/client/js/popper.min.js"></script>
-    <script src="/Assets/client/js/bootstrap.bundle.min.js"></script>
-    <script src="/Assets/client/js/jquery-3.0.0.min.js"></script>
-    <script src="/Assets/client/js/plugin.js"></script>
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/popper.min.js"></script>
+    <script src="~/Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/js/jquery-3.0.0.min.js"></script>
+    <script src="~/Assets/js/plugin.js"></script>
     <!-- sidebar -->
-    <script src="/Assets/client/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/Assets/client/js/custom.js"></script>
+    <script src="~/Assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Assets/js/custom.js"></script>
     <script>
         function openNav() {
             document.getElementById("mySidenav").style.width = "250px";
@@ -646,6 +500,6 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
-    @RenderBody()
 </body>
 </html>
+@RenderBody()
