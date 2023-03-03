@@ -1,4 +1,4 @@
-﻿
+﻿@model WebNTQ.Areas.Admin.Models.RegisterModel
 @{
     ViewBag.Title = "Trang chủ Admin";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -46,8 +46,7 @@
         </a>
     </li>
 
-}
-@section bodymain{
+}@section bodymain{
     <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
@@ -57,31 +56,27 @@
                     <h1 class="h4 text-gray-900 mb-2">
                         My Profile
                     </h1>
-                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    @using (Html.BeginForm("Edit", "HomeAdmin", FormMethod.Post))
                     {
-
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" });
                         <div class="form-group">
                             UserName
-                            <input type="email" class="form-control form-control-user"
-                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
 
                         </div>
                         <div class="form-group">
                             Password
-                            <input type="email" class="form-control form-control-user"
-                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+                            @Html.TextBoxFor(model => model.Email, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
 
                         </div>
                         <div class="form-group">
                             Confirm Password
-                            <input type="email" class="form-control form-control-user"
-                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+                            @Html.TextBoxFor(model => model.Password, new { @class = "input100", @autofocus = "autofocus", @placeholder = "Type your username" })
 
                         </div>
                         <div class="form-group">
                             Email
-                            <input type="email" class="form-control form-control-user" readonly
-                                   id="exampleInputEmail" aria-describedby="emailHelp" />
+                            
                         </div>
                         <div class="form-group">
                             Type

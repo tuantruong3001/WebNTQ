@@ -23,24 +23,45 @@ namespace Model.Dao
             return entity.ID;
         }
         // cập nhật
-        public int Update(User entity)
+        public bool Update(User entity)
         {
-            db.Users.AddOrUpdate(entity);
-            db.SaveChanges();
-            return entity.ID;
+            try
+            {
+                var user = db.Users.Find(entity.ID);
+                if (user != null)
+                {
+                    user.UserName = entity.UserName;
+                    user.Password = entity.Password;
+                    user.UpdateAt = DateTime.Now;
+                    db.SaveChanges();
+                    return true;
+                }
+                else { return false; }
+            }
+            catch (Exception ex) { return false; }
+
+        }
+        public User GetByID(int id)
+        {
+            return db.Users.SingleOrDefault(x => x.ID == id);
+        }
+        public User ViewDetail(int id)
+        {
+            return db.Users.Find(id);
         }
         public User GetByEmail(string email)
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
         }
+        //đăng ký
         public int RegisterCheck(string email, string user)
         {
-           
+
             var emailExists = db.Users.SingleOrDefault(x => x.Email == email);
             var usernameExists = db.Users.SingleOrDefault(x => x.UserName == user);
             if (emailExists == null && usernameExists == null)
             {
-                return 1; 
+                return 1;
             }
             else if (emailExists != null)
             {
@@ -51,6 +72,7 @@ namespace Model.Dao
                 return -1; // trùng user
             }
         }
+        //đăng nhập
         public int Login(string passWord, string email)
         {
             var result = db.Users.SingleOrDefault(x => x.Email == email);

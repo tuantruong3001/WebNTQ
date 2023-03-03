@@ -1,4 +1,5 @@
 ﻿using Model.Dao;
+using Model.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,46 +12,44 @@ namespace WebNTQ.Areas.Admin.Controllers
 {
     public class HomeAdminController : BaseController
     {
-        [HttpGet]
+
         // GET: Admin/Home
         public ActionResult Index()
         {
             return View();
         }
+        /*[HttpGet]
+        public ActionResult Index(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }*/
         /*[HttpPost]
-        public ActionResult Update(ProfileModel profileModel)
+        public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(profileModel.Password, profileModel.Email);
-                if (result == 1)
+                var check = dao.RegisterCheck(user.UserName, user.Email);
+                if (check == 1)
                 {
-                    var user = dao.GetByEmail(profileModel.Email);
-                    var userSession = new UserLogin();
-                    userSession.UserName = user.UserName;
-                    userSession.Email = user.Email;
-                    userSession.UserID = user.ID;
-                    Session.Add(CommonConstants.USER_SESSION, userSession);                  
-                }
-                else if (result == 0)
-                {
-                    ModelState.AddModelError("", "Tài khoản không tồn tại!");
-                }
-                else if (result == -1)
-                {
-                    ModelState.AddModelError("", "Tài khoản bị xoá!");
-                }
-                else if (result == -2)
-                {
-                    ModelState.AddModelError("", "Mật khẩu không đúng!");
+                    user.Password = user.Password;
+                    var result = dao.Update(user);
+                    if (result)
+                    {
+                    
+                    }
+                    else
+                    { 
+                    
+                    }                       
                 }
                 else
                 {
                     ModelState.AddModelError("", "Đăng nhập không đúng!");
                 }
             }
-            return View("Index");
+            return View();
         }*/
     }
 }

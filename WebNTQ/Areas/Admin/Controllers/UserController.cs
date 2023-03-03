@@ -14,15 +14,11 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult CreateUser() 
         {
             return View();
-        }
-       /* [HttpPost]
-        public ActionResult CreateUser(RegisterModel registerModel)
-        {
-
         }*/
+      
     }
 }
