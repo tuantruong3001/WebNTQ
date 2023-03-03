@@ -10,7 +10,7 @@ namespace WebNTQ.Areas.Admin.Controllers
 {
     public class BaseController : Controller
     {
-        // GET: Admin/Base
+        // trỏ các trang về trang admin login 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];

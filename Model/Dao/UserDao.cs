@@ -45,10 +45,15 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.ID == id);
         }
+        public User ViewDetail(int id)
+        {
+            return db.Users.Find(id);
+        }
         public User GetByEmail(string email)
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
         }
+        //đăng ký
         public int RegisterCheck(string email, string user)
         {
 
@@ -67,6 +72,7 @@ namespace Model.Dao
                 return -1; // trùng user
             }
         }
+        //đăng nhập
         public int Login(string passWord, string email)
         {
             var result = db.Users.SingleOrDefault(x => x.Email == email);

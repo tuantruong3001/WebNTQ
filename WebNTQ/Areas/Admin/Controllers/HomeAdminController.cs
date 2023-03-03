@@ -18,13 +18,13 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult Edit(int id)
+        /*[HttpGet]
+        public ActionResult Index(int id)
         {
-            var user = new UserDao().GetByID(id);
+            var user = new UserDao().ViewDetail(id);
             return View(user);
-        }
-        [HttpPost]
+        }*/
+        /*[HttpPost]
         public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
@@ -37,7 +37,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                     var result = dao.Update(user);
                     if (result)
                     {
-
+                    
                     }
                     else
                     { 
@@ -50,6 +50,6 @@ namespace WebNTQ.Areas.Admin.Controllers
                 }
             }
             return View();
-        }
+        }*/
     }
 }
