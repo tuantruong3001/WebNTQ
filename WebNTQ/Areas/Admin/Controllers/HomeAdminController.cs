@@ -18,7 +18,7 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        /*[HttpGet]
+       /* [HttpGet]
         public ActionResult Index(int id)
         {
             var user = new UserDao().ViewDetail(id);

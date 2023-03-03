@@ -6,26 +6,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/Assets/admin/img/icons/favicon.ico" />
+    <link rel="icon" type="image/png" href="~/Assets/admin/img/icons/favicon.ico" />
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/animate/animate2.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/animate/animate2.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/select2/select2.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/vendor/daterangepicker/daterangepicker.css">
+    <script src="~/Assets/admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/Assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/Assets/admin/js/sb-admin-2.min.js"></script>
+
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/Assets/admin/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/admin/css/main.css">
+    <link href="~/Assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/Assets/admin/css/sb-admin-2.min.css" rel="stylesheet">
     <!--===============================================================================================-->
     <style>
         .text-right {
@@ -35,10 +50,31 @@
         .label-input100 {
             font-size: 16px;
         }
+
+        .message {
+            overflow: hidden;
+            width: 1920px;
+            text-align: center;
+            z-index: 1;
+            position: absolute;
+
+        }
+        .close {           
+            color: #fff;
+        }
     </style>
 </head>
 <body style="background-image: url('/Assets/admin/img/bg-01.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class="limiter">
+        <div class="message">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">                       
+                    </button> <h5><i class="icon fas fa-check"></i> @TempData["SuccessMessage"]</h5>                   
+                </div>
+            }
+        </div>
         <div class="container-login100">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
@@ -79,7 +115,7 @@
                     </div>
                     <div class="flex-col-c p-t-155">
                         <span class="txt1 p-b-17">
-                            <a class="nav-link text-right" href="@Url.Action("Index", "Home", new { area = "" })">Back to Homepage</a>
+                            <a class="nav-link text-right" href="/Home/Index">Back to Homepage</a>
                         </span>
                         <span class="txt1 p-b-17">
                             Don't have an account?

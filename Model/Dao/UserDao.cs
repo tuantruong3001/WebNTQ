@@ -53,7 +53,7 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
         }
-        //đăng ký
+        //check khi thêm mới user or đk
         public int RegisterCheck(string email, string user)
         {
 
