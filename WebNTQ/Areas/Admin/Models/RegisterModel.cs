@@ -18,9 +18,11 @@ namespace WebNTQ.Areas.Admin.Models
 
         public string UserName { get; set; }
 
-        [RegularExpression(@"^.{8,20}$", ErrorMessage = "{0} chỉ từ 8 đến 20 ký tự.")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20}).*$", ErrorMessage = "{0} phải từ 8-20 kí tự bao gồm ít nhất 1 kí tự số, 1 kí tự viết hoa và 1 kí tự đặc biệt.")]       
         [Required(ErrorMessage = "Password không được để trống!")]
         public string Password { get; set; }
+
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20}).*$", ErrorMessage = "{0} phải từ 8-20 kí tự bao gồm ít nhất 1 kí tự số, 1 kí tự viết hoa và 1 kí tự đặc biệt.")]
         [Required(ErrorMessage = "ConfirmPassword không được để trống!")]
         public string ConfirmPassword { get; set; }
         public int ID { get; set; }

@@ -2,6 +2,7 @@
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
@@ -41,19 +42,44 @@ namespace Model.Dao
             }
             catch (Exception) { return false; }
         }
-        public bool Delete(int id)
+        //update profile
+        public bool UpdateProfile(User entity)
         {
             try
             {
-                var user = db.Users.Find(id);
-                user.Status = false;
-                user.DeleteAt = DateTime.Now;
+                var user = db.Users.Find(entity.ID);
+
+                user.UserName = entity.UserName;
+                user.Password = entity.Password;
+                user.UpdateAt = DateTime.Now;
                 db.SaveChanges();
                 return true;
+
             }
-            catch (Exception)
+            catch (Exception) { return false; }
+        }
+
+        // xoá (chưa xong)
+        public bool Delete(int id)
+        {
+            using (var context = new NtqDbContext())
             {
-                return false;
+                var user = context.Users.Find(id);
+                if (user == null)
+                {
+                    return false;
+                }
+                user.Status = false;
+                user.DeleteAt = DateTime.Now;
+                try
+                {
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (DbUpdateException ex)
+                {
+                    throw new Exception("Đã có lỗi xảy ra, vui lòng thử lại sau", ex);
+                }
             }
         }
         public User GetByUserName(string userName)
@@ -61,6 +87,10 @@ namespace Model.Dao
             return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
         public User GetByID(int id)
+        {
+            return db.Users.Find(id);
+        }
+        public User ViewDetail(int id)
         {
             return db.Users.Find(id);
         }
@@ -109,6 +139,6 @@ namespace Model.Dao
                 }
             }
             return model.OrderBy(x => x.CreateAt).ToPagedList(page, pageSize);
-        }      
+        }
     }
 }

@@ -18,7 +18,8 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        /*public ActionResult Index(int id)
+        [HttpGet]
+        public ActionResult Index(int id)
         {
             var dao = new UserDao();
             var temp = dao.GetByID(id);
@@ -39,8 +40,8 @@ namespace WebNTQ.Areas.Admin.Controllers
                 UpdateAt = temp.UpdateAt
             };
             return View(user);
-        }*/
-        /*[HttpPost]
+        }
+        [HttpPost]
         public ActionResult Index(CreateModel model)
         {
             try
@@ -64,7 +65,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 throw;
             }
-        }*/
+        }
     }
 
 }

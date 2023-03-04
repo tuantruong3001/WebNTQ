@@ -58,50 +58,67 @@ namespace WebNTQ.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var dao = new UserDao();
-            var temp = dao.GetByID(id);
-            if (temp.Role == 0)
+            var userDao = new UserDao();
+            var user = userDao.GetByID(id);
+
+            string role = (user.Role == 0) ? "User" : "Admin";
+            ViewBag.Role = role;
+
+            var userModel = new CreateModel
             {
-                ViewBag.Role = "User";
-            }
-            else
-            {
-                ViewBag.Role = "Admin";
-            }
-            var user = new CreateModel
-            {
-                ID = temp.ID,
-                UserName = temp.UserName,
-                Email = temp.Email,
-                Password = temp.Password,
-                UpdateAt = temp.UpdateAt
+                ID = user.ID,
+                UserName = user.UserName,
+                Email = user.Email,
+                Password = user.Password,
+                UpdateAt = user.UpdateAt
             };
-            return View(user);
+            return View(userModel);
         }
         [HttpPost]
         public ActionResult Edit(CreateModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    var dao = new UserDao();
+                    var userDao = new UserDao();
                     var user = new User
                     {
                         ID = model.ID,
                         UserName = model.UserName,
                         Password = model.Password
                     };
-                    dao.Update(user);
+                    userDao.Update(user);
                     TempData["EditUserMessage"] = "Update thông tin user thành công";
                     return RedirectToAction("Index", "ListUser");
                 }
-                return View("Edit");
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
+                    return View(model);
+                }
             }
-            catch (Exception)
+            return View(model);
+        }
+        // chưa xong
+        public ActionResult Delete(int id)
+        {
+            UserDao userDao = new UserDao();
+            bool success = userDao.Delete(id);
+            if (success)
             {
-                throw;
+                TempData["DeleteUserMessage"] = "Xoá thành công";
             }
+            else
+            {
+                TempData["DeleteUserMessage"] = "Xoá không thành công";
+            }
+            return RedirectToAction("Index", "ListUser");
+        }
+        public ActionResult UpdateProfile(int id) 
+        {
+            var user  = new UserDao().ViewDetail(id);
+            return View(user);
         }
     }
 }

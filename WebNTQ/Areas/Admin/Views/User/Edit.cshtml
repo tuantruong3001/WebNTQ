@@ -26,18 +26,27 @@
                                 </div>
                                 <div class="form-group">
                                     Password
-                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type your password" })
+                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Type your password" })
 
                                 </div>
                                 <div class="form-group">
                                     Email
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type your email" })
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @placeholder = "Type your email" })
 
                                 </div>
                                 <a>
                                     <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
                                 </a>
                             }
+                            <script>
+                            // Lấy tất cả các phần tử có class là "password"
+                            var passwordFields = document.querySelectorAll(".password");
+
+                            // Với mỗi phần tử, thay thế giá trị bằng dấu *
+                            passwordFields.forEach(function (field) {
+                                field.textContent = "*".repeat(field.textContent.length);
+                            });
+                            </script>
                             <hr>
                             <a href="/Admin/ListUser/Index" style="background-color: #1cc88a;" class="btn btn-primary btn-user btn-block icon">
                                 <i class="fas fa-arrow-left"></i>
