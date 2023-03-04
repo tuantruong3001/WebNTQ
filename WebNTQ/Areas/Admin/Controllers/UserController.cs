@@ -17,6 +17,7 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Create(CreateModel createmodel)
         {
             if (!ModelState.IsValid)
@@ -47,13 +48,60 @@ namespace WebNTQ.Areas.Admin.Controllers
                     };
                     dao.Insert(user);
                     TempData["UserMessage"] = "Thêm mới thông tin user thành công";
-                    return View("Index");
+                    return RedirectToAction("Index", "ListUser");
                 default:
                     ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
                     break;
             }
             return View("Index");
         }
-
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var dao = new UserDao();
+            var temp = dao.GetByID(id);
+            if (temp.Role == 0)
+            {
+                ViewBag.Role = "User";
+            }
+            else
+            {
+                ViewBag.Role = "Admin";
+            }
+            var user = new CreateModel
+            {
+                ID = temp.ID,
+                UserName = temp.UserName,
+                Email = temp.Email,
+                Password = temp.Password,
+                UpdateAt = temp.UpdateAt
+            };
+            return View(user);
+        }
+        [HttpPost]
+        public ActionResult Edit(CreateModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var dao = new UserDao();
+                    var user = new User
+                    {
+                        ID = model.ID,
+                        UserName = model.UserName,
+                        Password = model.Password
+                    };
+                    dao.Update(user);
+                    TempData["EditUserMessage"] = "Update thông tin user thành công";
+                    return RedirectToAction("Index", "ListUser");
+                }
+                return View("Edit");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

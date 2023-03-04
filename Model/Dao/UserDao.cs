@@ -1,4 +1,5 @@
 ﻿using Model.EF;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -38,14 +39,28 @@ namespace Model.Dao
                 }
                 else { return false; }
             }
-            catch (Exception ex) { return false; }
-
+            catch (Exception) { return false; }
+        }
+        public bool Delete(int id)
+        {
+            try
+            {
+                var user = db.Users.Find(id);
+                user.Status = false;
+                user.DeleteAt = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public User GetByUserName(string userName)
+        {
+            return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
         public User GetByID(int id)
-        {
-            return db.Users.SingleOrDefault(x => x.ID == id);
-        }
-        public User ViewDetail(int id)
         {
             return db.Users.Find(id);
         }
@@ -81,5 +96,19 @@ namespace Model.Dao
             if (result.Password != passWord) return -2; // sai mật khẩu
             return 1;
         }
+        //list page
+        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize)
+        {
+            IQueryable<User> model = db.Users;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.UserName.Contains(searchString));
+                if (model == null)
+                {
+                    return null;
+                }
+            }
+            return model.OrderBy(x => x.CreateAt).ToPagedList(page, pageSize);
+        }      
     }
 }

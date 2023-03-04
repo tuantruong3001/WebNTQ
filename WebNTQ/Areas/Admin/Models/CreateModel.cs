@@ -21,6 +21,15 @@ namespace WebNTQ.Areas.Admin.Models
         [RegularExpression(@"^.{8,20}$", ErrorMessage = "{0} phải từ 8 đến 20 ký tự.")]
         [Required(ErrorMessage = "Password không được để trống!")]
         public string Password { get; set; }
-        
+        public int ID { get; set; }
+        public int? Role { get; set; }
+        public bool? Status { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? CreateAt { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? UpdateAt { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DeleteAt { get; set; }
+
     }
 }

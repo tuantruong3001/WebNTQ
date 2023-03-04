@@ -12,44 +12,59 @@ namespace WebNTQ.Areas.Admin.Controllers
 {
     public class HomeAdminController : BaseController
     {
-
+        [HttpGet]
         // GET: Admin/Home
         public ActionResult Index()
         {
             return View();
         }
-       /* [HttpGet]
-        public ActionResult Index(int id)
+        /*public ActionResult Index(int id)
         {
-            var user = new UserDao().ViewDetail(id);
+            var dao = new UserDao();
+            var temp = dao.GetByID(id);
+            if (temp.Role == 0)
+            {
+                ViewBag.Role = "User";
+            }
+            else
+            {
+                ViewBag.Role = "Admin";
+            }
+            var user = new CreateModel
+            {
+                ID = temp.ID,
+                UserName = temp.UserName,
+                Email = temp.Email,
+                Password = temp.Password,
+                UpdateAt = temp.UpdateAt
+            };
             return View(user);
         }*/
         /*[HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Index(CreateModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var dao = new UserDao();
-                var check = dao.RegisterCheck(user.UserName, user.Email);
-                if (check == 1)
+                if (ModelState.IsValid)
                 {
-                    user.Password = user.Password;
-                    var result = dao.Update(user);
-                    if (result)
+                    var dao = new UserDao();
+                    var user = new User
                     {
-                    
-                    }
-                    else
-                    { 
-                    
-                    }                       
+                        ID = model.ID,
+                        UserName = model.UserName,
+                        Password = model.Password
+                    };
+                    dao.Update(user);
+                    TempData["EditUserMessage"] = "Sửa thông tin thành công";
+                    return RedirectToAction("Index", "ListUser");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Đăng nhập không đúng!");
-                }
+                return View("Index");
             }
-            return View();
+            catch (Exception)
+            {
+                throw;
+            }
         }*/
     }
+
 }

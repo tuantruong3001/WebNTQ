@@ -1,11 +1,11 @@
 ﻿@model WebNTQ.Areas.Admin.Models.CreateModel
 @{
-    ViewBag.Title = "Add User";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
 @section bodymain{
-    <div class="card-body p-0">       
+    <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
             @Html.AntiForgeryToken()
@@ -14,9 +14,9 @@
                     <div class="card shadow mb-4">
                         <div class="p-5">
                             <div class="card-header py-3">
-                                <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">Add user</h2>
+                                <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">Edit user</h2>
                             </div>
-                            @using (Html.BeginForm("Create", "User", FormMethod.Post))
+                            @using (Html.BeginForm("Edit", "User", FormMethod.Post))
                             {
                                 @Html.ValidationSummary(false, "", new { @class = "text-danger" });
                                 <div class="form-group">
@@ -35,7 +35,7 @@
 
                                 </div>
                                 <a>
-                                    <input type="submit" value="Create" class="btn btn-primary btn-user btn-block" />
+                                    <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
                                 </a>
                             }
                             <hr>
