@@ -23,6 +23,15 @@ namespace WebNTQ.Areas.Admin.Models
         public string Password { get; set; }
         [Required(ErrorMessage = "ConfirmPassword không được để trống!")]
         public string ConfirmPassword { get; set; }
+        public int ID { get; set; }
+        public int? Role { get; set; }
+        public bool? Status { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? CreateAt { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? UpdateAt { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DeleteAt { get; set; }
 
     }
 }
