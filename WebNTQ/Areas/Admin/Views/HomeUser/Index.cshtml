@@ -6,36 +6,65 @@
 @section header{
     Trang chủ User
 }
-@*@section sidebar{
-    <div class="sb-sidenav-menu-heading"></div>
-    <a class="nav-link" href="index.html">
-        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-        Home
-    </a>
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <hr class="sidebar-divider my-0">
 
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-        Products
+        <li class="nav-item active">
+            <a class="nav-link" href="/Home/Index">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span>
+            </a>
+        </li>
 
-    </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>My Review</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>My Wishlists</span>
+            </a>
+        </li>
 
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        My Reviews
-        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-    </a>
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        My Wishlist
+        <!-- Nav Item - Charts -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/HomeAdmin">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
 
-    </a>
-    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-        My Profile
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
-    </a>
+    </ul>
 
-}*@
+}
 @section bodymain{
 
 }

@@ -4,8 +4,66 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item active">
+            <a class="nav-link" href="/Home/Index">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/ListUser/Index">
+                <i class="fas fa-fw fa-user"></i>
+                <span>List User</span>
+            </a>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/ListUser/Index">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>List Review</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/ListUser/Index">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Product</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/HomeAdmin">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+}
 @section bodymain{
-    <div class="card-body p-0">       
+    <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
             @Html.AntiForgeryToken()

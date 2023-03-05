@@ -2,6 +2,7 @@
 using Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -18,10 +19,18 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        /*public ActionResult Index(int id)
+        public ActionResult Edit(int id)
         {
+            var user = new UserDao().GetByID(id);
+            return View(user);
+        }
+        
+        /*[HttpGet]
+        public ActionResult Index(int id)
+        {
+            Session["Username"] = userName;
             var dao = new UserDao();
-            var temp = dao.GetByID(id);
+            var temp = db.Users.FirstOrDefault(x => x.UserName == userName);
             if (temp.Role == 0)
             {
                 ViewBag.Role = "User";
@@ -40,31 +49,31 @@ namespace WebNTQ.Areas.Admin.Controllers
             };
             return View(user);
         }*/
-        /*[HttpPost]
-        public ActionResult Index(CreateModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var dao = new UserDao();
-                    var user = new User
-                    {
-                        ID = model.ID,
-                        UserName = model.UserName,
-                        Password = model.Password
-                    };
-                    dao.Update(user);
-                    TempData["EditUserMessage"] = "Sửa thông tin thành công";
-                    return RedirectToAction("Index", "ListUser");
-                }
-                return View("Index");
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }*/
+        /* [HttpPost]
+         public ActionResult Index(CreateModel model)
+         {
+             try
+             {
+                 if (ModelState.IsValid)
+                 {
+                     var dao = new UserDao();
+                     var user = new User
+                     {
+                         ID = model.ID,
+                         UserName = model.UserName,
+                         Password = model.Password
+                     };
+                     dao.Update(user);
+                     TempData["EditUserMessage"] = "Sửa thông tin thành công";
+                     return RedirectToAction("Index", "ListUser");
+                 }
+                 return View("Index");
+             }
+             catch (Exception)
+             {
+                 throw;
+             }
+         }*/
     }
 
 }

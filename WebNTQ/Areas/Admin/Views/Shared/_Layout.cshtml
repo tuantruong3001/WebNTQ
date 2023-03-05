@@ -40,67 +40,7 @@
                 <div class="sidebar-brand-text mx-3">Admin Page <sup>♥</sup></div>
             </a>
 
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-                <!-- Sidebar - Brand -->               
-
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Home/Index">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider  my-0">
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Admin/ListUser/Index">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>List User</span>
-                    </a>
-                </li>
-                <!-- Nav Item - Utilities Collapse Menu -->
-                <hr class="sidebar-divider  my-0">
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Admin/ListUser/Index">
-                        <i class="fas fa-fw fa-comment"></i>
-                        <span>List Review</span>
-                    </a>
-                </li>
-                <!-- Divider -->
-                <hr class="sidebar-divider  my-0">
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Admin/ListUser/Index">
-                        <i class="fas fa-fw fa-folder"></i>
-                        <span>Product</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Charts -->
-                <hr class="sidebar-divider  my-0">
-                <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/Admin/HomeAdmin">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>My Profile</span>
-                    </a>
-                </li>
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
-            </ul>
+@RenderSection("sidebar", required:false);
             <!-- Sidebar -->
 
         </div>
@@ -119,19 +59,8 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                   aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                 
+                   
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -168,7 +97,7 @@
                                      src="/Assets/admin/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            
+
                         </li>
                     </ul>
 
@@ -231,8 +160,9 @@
     <!-- Bootstrap core JavaScript-->
     <script src="~/Assets/admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <!-- Core plugin JavaScript-->
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
