@@ -35,8 +35,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         Email = user.Email,
                         UserID = user.ID
                     };
-                    Session[CommonConstants.USER_SESSION] = userSession;
-
+                    Session[CommonConstants.USER_SESSION] = userSession;                    
                     if (user.Role == 1)
                     {
                         return RedirectToAction("Index", "HomeAdmin");
@@ -63,6 +62,14 @@ namespace WebNTQ.Areas.Admin.Controllers
                     break;
             }
             return View("Index");
+        }
+        public ActionResult Logout()
+        {
+            // Xóa session hiện tại
+            Session.Clear();
+
+            // Chuyển hướng đến trang đăng nhập
+            return RedirectToAction("Login", "Login"); 
         }
     }
 }

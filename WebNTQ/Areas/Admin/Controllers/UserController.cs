@@ -2,6 +2,7 @@
 using Model.EF;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,7 +44,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         Email = createmodel.Email,
                         Password = createmodel.Password,
                         Role = 0,
-                        CreateAt = DateTime.Now,
+                        CreateAt = DateTime.ParseExact(DateTime.Now.Date.ToString("dd/MM/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture),
                         Status = true,
                     };
                     dao.Insert(user);
@@ -115,10 +116,6 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
             return RedirectToAction("Index", "ListUser");
         }
-        public ActionResult UpdateProfile(int id) 
-        {
-            var user  = new UserDao().ViewDetail(id);
-            return View(user);
-        }
+        
     }
 }
