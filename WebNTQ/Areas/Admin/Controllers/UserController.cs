@@ -44,7 +44,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         Email = createmodel.Email,
                         Password = createmodel.Password,
                         Role = 0,
-                        CreateAt = DateTime.ParseExact(DateTime.Now.Date.ToString("dd/MM/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture),
+                        CreateAt = DateTime.Now,
                         Status = true,
                     };
                     dao.Insert(user);
@@ -101,7 +101,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
             return View(model);
         }
-        // chưa xong
+        //xoá user, đổi status => false
         public ActionResult Delete(int id)
         {
             UserDao userDao = new UserDao();

@@ -1,8 +1,8 @@
-﻿@model WebNTQ.Areas.Admin.Models.RegisterModel
-@*@model Model.EF.User*@
+﻿@model WebNTQ.Areas.Admin.Models.ProductModel
 @{
-    ViewBag.Title = "Profile Admin";
+    ViewBag.Title = "Add Product";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
 }
 @section sidebar{
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -39,7 +39,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="/Admin/ListProduct/Index">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>List Product</span>
+                <span>List Products</span>
             </a>
         </li>
 
@@ -66,62 +66,58 @@
     <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-
+            @Html.AntiForgeryToken()
             <div class="col-lg-6">
-                @if (TempData["EditUserMessage"] != null)
-                {
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        </button> <h5><i class="icon fas fa-check"></i> @TempData["EditUserMessage"]</h5>
-                    </div>
-                }
-
-                @Html.AntiForgeryToken()
                 <div class="panel panel-default">
                     <div class="card shadow mb-4">
                         <div class="p-5">
                             <div class="card-header py-3">
-                                <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">My profile</h2>
+                                <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">Add Product</h2>
                             </div>
-                            @using (Html.BeginForm("Index", "HomeAdmin", FormMethod.Post))
+                            @using (Html.BeginForm("Create", "Product", FormMethod.Post))
                             {
                                 @Html.ValidationSummary(false, "", new { @class = "text-danger" });
                                 <div class="form-group">
-
-                                    @Html.LabelFor(model => model.UserName, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type your password" })
-
-                                </div>
-                                <div class="form-group">
-
-                                    @Html.LabelFor(model => model.Password, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Type your password" })
+                                    ProductName
+                                    @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type ProductName" })
 
                                 </div>
                                 <div class="form-group">
-
-                                    @Html.LabelFor(model => model.ConfirmPassword, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Type your confirm password" })
-
-                                </div>
-                                <div class="form-group">
-
-                                    @Html.LabelFor(model => model.Email, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @autofocus = "autofocus", @readonly = "true" })
+                                    Slug
+                                    @Html.TextBoxFor(model => model.Slug, new { @class = "form-control form-control-user", @placeholder = "Type Slug" })
 
                                 </div>
                                 <div class="form-group">
-                                    Type
-                                    @Html.TextBoxFor(model => model.Role, new { @class = "form-control form-control-user", @autofocus = "autofocus", @readonly = "true" })
+                                    ProductDetail
+                                    @Html.TextBoxFor(model => model.Detail, new { @class = "form-control form-control-user", @placeholder = "Type ProductDetail" })
+
+                                </div>
+                                <div class="form-group">
+                                    Price
+                                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control form-control-user", @placeholder = "Type Price" })
+
+                                </div>
+                                <div class="form-group">
+                                    Trending
+                                    @Html.DropDownListFor(model => model.Trending, new SelectList(new List<SelectListItem>
+{
+    new SelectListItem { Text = "Top Trending", Value = "true" },
+    new SelectListItem { Text = "Bot Trending", Value = "false" }
+}), "-- Select Trending --", new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    Image
+                                    @Html.TextBoxFor(model => model.MetaKey, new { @class = "form-control form-control-user" })
 
                                 </div>
                                 <a>
-                                    <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
+                                    <input type="submit" value="Create" class="btn btn-primary btn-user btn-block" />
                                 </a>
-                                <hr>
                             }
-                            <a style="background-color:#e74a3b;" class="btn btn-primary btn-user btn-block " @Html.ActionLink("Logout", "Logout", "Login")>
-
+                            <hr>
+                            <a href="/Admin/ListProduct/Index" style="background-color: #1cc88a;" class="btn btn-primary btn-user btn-block icon">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to list
                             </a>
                         </div>
                     </div>

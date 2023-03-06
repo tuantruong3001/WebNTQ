@@ -35,7 +35,7 @@ namespace Model.Dao
                 {
                     user.UserName = entity.UserName;
                     user.Password = entity.Password;
-                    user.UpdateAt = DateTime.ParseExact(DateTime.Now.Date.ToString("dd/MM/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    user.UpdateAt = DateTime.Now;
                     db.SaveChanges();
                     return true;
                 }
@@ -54,7 +54,6 @@ namespace Model.Dao
                 user.UpdateAt = DateTime.Now;
                 db.SaveChanges();
                 return true;
-
             }
             catch (Exception) { return false; }
         }
@@ -70,7 +69,7 @@ namespace Model.Dao
                     return false;
                 }
                 user.Status = false;
-                user.DeleteAt = DateTime.ParseExact(DateTime.Now.Date.ToString("dd/MM/yyyy"), "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                user.DeleteAt = DateTime.Now;
                 try
                 {
                     context.SaveChanges();
@@ -90,7 +89,7 @@ namespace Model.Dao
         public User GetByID(int id)
         {
             return db.Users.Find(id);
-        }      
+        }
         public User GetByEmail(string email)
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
@@ -123,8 +122,8 @@ namespace Model.Dao
             if (result.Password != passWord) return -2; // sai mật khẩu
             return 1;
         }
-        //list page
-        public IEnumerable<User> ListAllPaging(string searchString, bool roleFilter, int page, int pageSize)
+        //list page, filter (thiếu status  )
+        public IEnumerable<User> ListAllPaging(string searchString, bool active, bool deteled, bool roleFilter, int page, int pageSize)
         {
             IQueryable<User> model = db.Users;
             if (!string.IsNullOrEmpty(searchString))
@@ -139,7 +138,16 @@ namespace Model.Dao
             {
                 model = model.Where(x => x.Role == 1);
             }
+            if (active)
+            {
+                model = model.Where(x => x.Status == true);
+            }
+            if (deteled)
+            {
+                model = model.Where(x => x.Status == false);
+            }
             return model.OrderBy(x => x.CreateAt).ToPagedList(page, pageSize);
         }
+
     }
 }
