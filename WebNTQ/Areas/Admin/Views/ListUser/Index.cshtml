@@ -37,9 +37,9 @@
         <hr class="sidebar-divider  my-0">
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item active">
-            <a class="nav-link" href="/Admin/ListUser/Index">
+            <a class="nav-link" href="/Admin/ListProduct/Index">
                 <i class="fas fa-fw fa-folder"></i>
-                <span>Product</span>
+                <span>List Product</span>
             </a>
         </li>
 
@@ -88,96 +88,107 @@
         <div class="panel panel-default">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">List user</h2>
+                    <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">List Users</h2>
                 </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "ListUser", FormMethod.Get))
                     {
                         <div class="form-group">
                             @Html.Label("Search:", new { @class = "control-label" })
-                            @Html.TextBox("searchString", null, new { @class = "form-control" })
+                            @Html.TextBox("searchString", null, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Search for..." })
                         </div>
-                        <div class="form-group">
-                            @Html.CheckBox("roleFilter", false)
-                            @Html.Label("Filter by Role 1", new { @class = "control-label" })
+                        <div class="filter" style=" width: 100%; overflow: hidden;">
+                            <div class="form-group filter1" style=" display: inline-block; width: 5%; margin: 0px;">
+                                @Html.Label("Filter by: ", new { @class = "control-label" })
+                            </div>
+                            <div class="form-group filter1" style=" display: inline-block; width: 8%; margin: 1px;">
+                                @Html.CheckBox("roleFilter", false)
+                                @Html.Label("Role Admin", new { @class = "control-label" })
+                            </div>
+                            <div class="form-group filter1" style="display: inline-block; width: 8%; margin: 0 1.5%;">
+                                @Html.CheckBox("active", false)
+                                @Html.Label("Active", new { @class = "control-label" })
+                            </div>
+                            <div class="form-group filter1" style="display: inline-block; width: 5%; margin: 0;">
+                                @Html.CheckBox("deleted", false)
+                                @Html.Label("Deleted", new { @class = "control-label" })
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Filter</button>
                         <hr>
                     }
                     <div class="table-responsive">
                         <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <table style="text-align:center" class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>UserName</th>
-                                        <th>Email</th>
-                                        <th>Password</th>
-                                        <th data-sort="date">CreateAt</th>
-                                        <th data-sort="date">UpdateAt</th>
-                                        <th data-sort="date">DeleteAt</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model.Count == 0)
-                                    {
+                            <div class="table-responsive">
+                                <table style="text-align:center" class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
                                         <tr>
-                                            <td colspan="9" class="text-center">No Data</td>
+                                            <th></th>
+                                            <th>UserName</th>
+                                            <th>Email</th>
+                                            <th>Password</th>
+                                            <th data-sort="date">CreateAt</th>
+                                            <th data-sort="date">UpdateAt</th>
+                                            <th data-sort="date">DeleteAt</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
-                                    }
-                                    @if (Model.Count != 0)
-                                    {
-                                        foreach (var item in Model)
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.Count == 0)
                                         {
-                                            <tr id="row_@item.ID">
 
-
-                                                <td>@item.UserName</td>
-                                                <td>@item.Email</td>
-                                                <td><span class="password">@item.Password</span></td>
-                                                <td>@item.CreateAt</td>
-                                                <td>@item.UpdateAt</td>
-                                                <td>@item.DeleteAt</td>
-                                                <td><a style="text-decoration:none" data-id="@item.ID">@(item.Role == 1 ? "Admin" : "User")</a></td>
-                                                <td><a style="text-decoration:none" data-id="@item.ID">@(item.Status == true ? "Chưa xóa" : " Đã Xóa")</a></td>
-                                                <td>
-                                                    <a class="btn btn-success" style="text-decoration:none; " href="/Admin/User/Edit/@item.ID"><i class="fa fa-edit"></i> Edit</a> |
-                                                    <a style="text-decoration: none;" href="@Url.Action("Delete", "User", new { id = item.ID })" class="btn btn-danger" onclick="return confirm('Xác nhận xoá?')"><i class="fas fa-trash"></i> Delete</a>
-                                                </td>
-
+                                            <tr>
+                                                <td colspan="9" class="text-center">No Data</td>
                                             </tr>
                                         }
-                                    }
+                                        @if (Model.Count != 0)
+                                        {
+                                            var counter = 1;
+                                            foreach (var item in Model)
+                                            {
+                                                <tr id="row_@item.ID">
+                                                    <td>@counter</td>
+                                                    <td>@item.UserName</td>
+                                                    <td>@item.Email</td>
+                                                    <td><span class="password">@item.Password</span></td>
+                                                    <td>@(item.CreateAt == null ? "" : item.CreateAt.Value.ToString("dd/MM/yyyy"))</td>
+                                                    <td>@(item.UpdateAt == null ? "" : item.UpdateAt.Value.ToString("dd/MM/yyyy"))</td>
+                                                    <td>@(item.DeleteAt == null ? "" : item.DeleteAt.Value.ToString("dd/MM/yyyy"))</td>
+                                                    <td><a style="text-decoration:none" data-id="@item.ID">@(item.Role == 1 ? "Admin" : "User")</a></td>
+                                                    <td><a style="text-decoration:none" data-id="@item.ID">@(item.Status == true ? "Chưa xóa" : " Đã xóa")</a></td>
+                                                    <td>
+                                                        <a class="btn btn-success" style="text-decoration:none; " href="/Admin/User/Edit/@item.ID"><i class="fa fa-edit"></i> Edit</a> |
+                                                        <a style="text-decoration: none;" href="@Url.Action("Delete", "User", new { id = item.ID })" class="btn btn-danger" onclick="return confirm('Xác nhận xoá?')"><i class="fas fa-trash"></i> Delete</a>
+                                                    </td>
+                                                </tr>
+                                                counter++;
+                                            }
+                                        }
 
-                                </tbody>
+                                    </tbody>
 
-                            </table>
-                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString, filterByRole = ViewBag.FilterByRole }))
-                            <script>
-                                // Lấy tất cả các phần tử có class là "password"
-                                var passwordFields = document.querySelectorAll(".password");
+                                </table>
 
-                                // Với mỗi phần tử, thay thế giá trị bằng dấu *
-                                passwordFields.forEach(function (field) {
-                                    field.textContent = "*".repeat(field.textContent.length);
-                                });
-                            </script>
-                            <script>
-                                $(document).ready(function () {
-                                    $('#dataTable').DataTable();
-                                });
-                            </script>
-                        </div>
-                        <div class="input-group-append">
-                            <a class="btn btn-primary" href="/Admin/User/Index">Add User</a>
+                                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, searchString = ViewBag.SearchString, roleFilter = ViewBag.RoleFilter, active = ViewBag.StatusActive, deleted = ViewBag.StatusDeleted }))
+                                <script>
+                                    // Lấy tất cả các phần tử có class là "password"
+                                    var passwordFields = document.querySelectorAll(".password");
+
+                                    // Với mỗi phần tử, thay thế giá trị bằng dấu *
+                                    passwordFields.forEach(function (field) {
+                                        field.textContent = "*".repeat(field.textContent.length);
+                                    });
+                                </script>
+                            </div>
+                            <div class="input-group-append">
+                                <a class="btn btn-primary" href="/Admin/User/Index">Add User</a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
+</div>

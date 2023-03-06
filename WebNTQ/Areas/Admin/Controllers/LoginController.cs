@@ -13,11 +13,11 @@ namespace WebNTQ.Areas.Admin.Controllers
     {
         // GET: Admin/Login
         public ActionResult Index()
-        {           
+        {
             return View();
         }
         public ActionResult Login(LoginModel model)
-        {           
+        {
             if (!ModelState.IsValid)
             {
                 return View("Index");
@@ -35,7 +35,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         Email = user.Email,
                         UserID = user.ID
                     };
-                    Session[CommonConstants.USER_SESSION] = userSession;                    
+                    Session[CommonConstants.USER_SESSION] = userSession;
                     if (user.Role == 1)
                     {
                         return RedirectToAction("Index", "HomeAdmin");
@@ -65,11 +65,19 @@ namespace WebNTQ.Areas.Admin.Controllers
         }
         public ActionResult Logout()
         {
-            // Xóa session hiện tại
-            Session.Clear();
+            try
+            {
+                // Xóa session hiện tại
+                Session.Clear();
 
-            // Chuyển hướng đến trang đăng nhập
-            return RedirectToAction("Login", "Login"); 
+                // Chuyển hướng đến trang đăng nhập
+                return RedirectToAction("Login", "Login");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMessage = "Đã có lỗi xảy ra, vui lòng thử lại sau " + ex.Message;
+                return View("Index");
+            }
         }
     }
 }

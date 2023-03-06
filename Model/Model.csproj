@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Dao\UserDao.cs" />
     <Compile Include="EF\Category.cs" />
     <Compile Include="EF\Media.cs" />
