@@ -4,6 +4,21 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 
 }
+
+@section jsFooter{
+
+
+    <script>
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+            };
+            finder.popup();
+        })
+    </script>
+}
 @section sidebar{
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <hr class="sidebar-divider my-0">
@@ -105,9 +120,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    Image
-                                    @* @Html.TextBoxFor(model => model.Path, new { @class = "form-control form-control-user", @id = "txtImage" })*@
-                                    @*<button id="btnSelectImage">Choose Image</button>*@
+                                    <div class="col-md-10">
+                                        Image
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Path, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage" })
+                                            <a id="btnSelectImage" href="#">Choose Image </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                                 <a>
                                     <input style="background-color: #36b9cc" type="submit" value="Create" class="btn btn-primary btn-user btn-block" />
@@ -125,3 +145,9 @@
         </div>
     </div>
 }
+<script>
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
