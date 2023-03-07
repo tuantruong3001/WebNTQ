@@ -21,40 +21,51 @@ namespace WebNTQ.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(CreateModel createmodel)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("Index");
+                }
+
+                var dao = new UserDao();
+                var result = dao.RegisterCheck(createmodel.Email, createmodel.UserName);
+
+                switch (result)
+                {
+                    case -1:
+                        ModelState.AddModelError("", "UserName đã tồn tại!");
+                        break;
+                    case 0:
+                        ModelState.AddModelError("", "Email đã tồn tại!");
+                        break;
+                    case 1:
+                        var user = new User
+                        {
+                            UserName = createmodel.UserName,
+                            Email = createmodel.Email,
+                            Password = createmodel.Password,
+                            Role = 0,
+                            CreateAt = DateTime.Now,
+                            Status = true,
+                        };
+                        dao.Insert(user);
+                        TempData["UserMessage"] = "Thêm mới thông tin user thành công";
+                        return RedirectToAction("Index", "ListUser");
+                    default:
+                        ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
+                        break;
+                }
+
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                // Xử lý ngoại lệ
+                ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
                 return View("Index");
             }
 
-            var dao = new UserDao();
-            var result = dao.RegisterCheck(createmodel.Email, createmodel.UserName);
-
-            switch (result)
-            {
-                case -1:
-                    ModelState.AddModelError("", "UserName đã tồn tại!");
-                    break;
-                case 0:
-                    ModelState.AddModelError("", "Email đã tồn tại!");
-                    break;
-                case 1:
-                    var user = new User
-                    {
-                        UserName = createmodel.UserName,
-                        Email = createmodel.Email,
-                        Password = createmodel.Password,
-                        Role = 0,
-                        CreateAt = DateTime.Now,
-                        Status = true,
-                    };
-                    dao.Insert(user);
-                    TempData["UserMessage"] = "Thêm mới thông tin user thành công";
-                    return RedirectToAction("Index", "ListUser");
-                default:
-                    ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
-                    break;
-            }
-            return View("Index");
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -78,44 +89,65 @@ namespace WebNTQ.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(CreateModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                try
+                if (ModelState.IsValid)
                 {
-                    var userDao = new UserDao();
-                    var user = new User
+                    var dao = new UserDao();                                       
+                    bool checkUserName = dao.CheckUserName(model.UserName);
+                    bool checkEmail = dao.CheckEmail(model.Email);
+                    var userOld = dao.GetByID(model.ID);
+                    if (model.UserName == userOld.UserName) checkUserName = true;
+                    if (model.Email == userOld.Email) checkEmail = true;
+                    if (checkUserName && checkEmail)
                     {
-                        ID = model.ID,
-                        UserName = model.UserName,
-                        Password = model.Password
-                    };
-                    userDao.Update(user);
-                    TempData["EditUserMessage"] = "Update thông tin user thành công";
-                    return RedirectToAction("Index", "ListUser");
+                        var user = new User
+                        {
+                            ID = model.ID,
+                            Email = model.Email,
+                            UserName = model.UserName,
+                            Password = model.Password,                           
+                        };
+                        dao.Update(user);
+                        TempData["EditUserMessage"] = "Update thông tin user thành công";
+                        return RedirectToAction("Index", "ListUser");
+                    }
+                    if (!checkUserName) { ModelState.AddModelError("", "Username đã tồn tại"); };
+                    if (!checkEmail) { ModelState.AddModelError("", "Email đã tồn tại"); };
                 }
-                catch (Exception ex)
-                {
-                    ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
-                    return View(model);
-                }
+                return View(model);
             }
-            return View(model);
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
+                return View(model);
+            }
         }
         //xoá user, đổi status => false
         public ActionResult Delete(int id)
         {
-            UserDao userDao = new UserDao();
-            bool success = userDao.Delete(id);
-            if (success)
+            try
             {
-                TempData["DeleteUserMessage"] = "Xoá thành công";
+                UserDao userDao = new UserDao();
+                bool success = userDao.Delete(id);
+                if (success)
+                {
+                    TempData["DeleteUserMessage"] = "Xoá thành công";
+                }
+                else
+                {
+                    TempData["DeleteUserMessage"] = "Xoá không thành công";
+                }
+                return RedirectToAction("Index", "ListUser");
             }
-            else
+            catch (Exception ex)
             {
-                TempData["DeleteUserMessage"] = "Xoá không thành công";
+                // Xử lý ngoại lệ
+                ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
+                return RedirectToAction("Index", "ListUser");
             }
-            return RedirectToAction("Index", "ListUser");
+
         }
-        
+
     }
 }

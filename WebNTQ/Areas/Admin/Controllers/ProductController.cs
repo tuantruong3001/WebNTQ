@@ -113,17 +113,26 @@ namespace WebNTQ.Areas.Admin.Controllers
         // xoá product
         public ActionResult Delete(int id)
         {
-            ProductDao productDao = new ProductDao();
-            bool success = productDao.Delete(id);
-            if (success)
+            try
             {
-                TempData["DeleteUserMessage"] = "Xoá thành công";
+                ProductDao productDao = new ProductDao();
+                bool success = productDao.Delete(id);
+                if (success)
+                {
+                    TempData["DeleteUserMessage"] = "Xoá thành công";
+                }
+                else
+                {
+                    TempData["DeleteUserMessage"] = "Xoá không thành công";
+                }
+                return RedirectToAction("Index", "ListProduct");
             }
-            else
+            catch (Exception)
             {
-                TempData["DeleteUserMessage"] = "Xoá không thành công";
+                ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
+                return View("Index"); 
             }
-            return RedirectToAction("Index", "ListProduct");
+
         }
     }
 }
