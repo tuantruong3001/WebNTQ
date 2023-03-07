@@ -37,6 +37,7 @@ namespace Model.Dao
                     product.Price = entity.Price;
                     product.Trending = entity.Trending;
                     product.MetaKey = entity.MetaKey;
+                    product.Status = true;
                     product.UpdateAt = DateTime.Now;
                     db.SaveChanges();
                     return true;

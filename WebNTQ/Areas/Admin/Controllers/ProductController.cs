@@ -18,35 +18,42 @@ namespace WebNTQ.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ProductModel createmodel)
+        public ActionResult Create(ProductModel createmodel, bool Trending)
         {
             if (!ModelState.IsValid)
             {
                 return View("Index");
             }
-
-            var dao = new ProductDao();
-
-            var product = new Product
+            try
             {
-                ProductName = createmodel.ProductName,
-                Slug = createmodel.Slug,
-                Detail = createmodel.Detail,
-                Price = createmodel.Price,
-                Trending = createmodel.Trending,
-                CreateAt = DateTime.Now,
-                Status = true,
-            };
-            dao.Insert(product);
-            TempData["UserMessage"] = "Thêm mới thông tin product thành công";
-            return RedirectToAction("Index", "ListProduct");
+                var dao = new ProductDao();
+                var product = new Product
+                {
+                    ProductName = createmodel.ProductName,
+                    Slug = createmodel.Slug,
+                    Detail = createmodel.Detail,
+                    Price = createmodel.Price,
+                    Trending = Trending,
+                    CreateAt = DateTime.Now,
+                    Status = true,
+                };
+                dao.Insert(product);
+                TempData["UserMessage"] = "Thêm mới thông tin product thành công";
+                return RedirectToAction("Index", "ListProduct");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
+                return View(createmodel);
+            }
         }
+        // sửa product
         [HttpGet]
         public ActionResult Edit(int id)
         {
             var productDao = new ProductDao();
             var product = productDao.GetByID(id);
-         
+
             var productModel = new ProductModel
             {
                 ID = product.ID,
@@ -57,6 +64,11 @@ namespace WebNTQ.Areas.Admin.Controllers
                 Price = product.Price,
                 UpdateAt = product.UpdateAt
             };
+            ViewBag.TrendingOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Value = "True", Text = "Top Trending", Selected = product.Trending == true },
+                new SelectListItem { Value = "False", Text = "None Trending", Selected = product.Trending == false },
+            };
             return View(productModel);
         }
         [HttpPost]
@@ -66,6 +78,11 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 try
                 {
+                    ViewBag.TrendingOptions = new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "True", Text = "Top Trending", Selected = model.Trending == true },
+                        new SelectListItem { Value = "False", Text = "None Trending", Selected = model.Trending == false },
+                    };
                     var productDao = new ProductDao();
                     var product = new Product
                     {
@@ -73,9 +90,10 @@ namespace WebNTQ.Areas.Admin.Controllers
                         ProductName = model.ProductName,
                         Slug = model.Slug,
                         Detail = model.Detail,
-                        Trending = true,
+                        Trending = model.Trending,
                         Price = model.Price,
-                        UpdateAt = model.UpdateAt
+                        UpdateAt = model.UpdateAt,
+                        Status = true,
                     };
                     productDao.Update(product);
                     TempData["EditUserMessage"] = "Sửa thông tin product thành công";

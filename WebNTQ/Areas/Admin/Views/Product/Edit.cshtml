@@ -97,26 +97,26 @@
                                     @Html.TextBoxFor(model => model.Price, new { @class = "form-control form-control-user", @placeholder = "Type Price" })
 
                                 </div>
-                                <div class="form-group">                                
-                                    @Html.LabelFor(model => model.Trending, new { @class = "control-label" })
-                                    @Html.DropDownListFor(model => model.Trending, new SelectList(new List<SelectListItem>
-                                    {
-                                        new SelectListItem { Text = "Top Trending", Value = "True" },
-                                        new SelectListItem { Text = "Bot Trending", Value = "False" }
-                                    }), "-- Select Trending --", new { @class = "form-control" })
-
+                                <div class="form-group">
+                                    <label for="Trending">Trending</label>
+                                    <select class="form-control" id="Trending" name="Trending">
+                                        @foreach (var option in ViewBag.TrendingOptions)
+                                        {
+                                            <option value="@option.Value" @(option.Selected ? "selected" : "")>@option.Text</option>
+                                        }
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     Image
-                                    @Html.TextBoxFor(model => model.MetaKey, new { @class = "form-control form-control-user" })
-
+                                    @* @Html.TextBoxFor(model => model.Path, new { @class = "form-control form-control-user", @id="txtImage" })*@
+                                    @* <button id="btnSelectImage">Choose Image</button>*@
                                 </div>
                                 <a>
-                                    <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
+                                    <input style="background-color: #36b9cc" type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
                                 </a>
                             }
                             <hr>
-                            <a href="/Admin/ListProduct/Index" style="background-color: #1cc88a;" class="btn btn-primary btn-user btn-block icon">
+                            <a href="/Admin/ListProduct/Index" class="btn btn-primary btn-user btn-block icon">
                                 <i class="fas fa-arrow-left"></i>
                                 Back to list
                             </a>
