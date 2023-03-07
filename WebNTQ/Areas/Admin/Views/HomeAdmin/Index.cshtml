@@ -1,5 +1,4 @@
-﻿@model WebNTQ.Areas.Admin.Models.RegisterModel
-@*@model Model.EF.User*@
+﻿@model WebNTQ.Areas.Admin.Models.ProfileModel
 @{
     ViewBag.Title = "Profile Admin";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -105,24 +104,21 @@
 
                                 </div>
                                 <div class="form-group">
-
-                                    @Html.LabelFor(model => model.Email, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control form-control-user", @autofocus = "autofocus", @readonly = "true" })
-
+                                    <label class="control-label">Email</label>
+                                    <input type="text" class="form-control form-control-user" readonly="readonly" value="@Model.Email" />
+                                    @Html.HiddenFor(model => model.Email)
                                 </div>
                                 <div class="form-group">
-                                    Type
-                                    @Html.TextBoxFor(model => model.Role, new { @class = "form-control form-control-user", @autofocus = "autofocus", @readonly = "true" })
-
+                                    <label class="control-label">Type</label>
+                                    <input type="text" class="form-control form-control-user" readonly="readonly" value="@(Model.Role == 1 ? "Admin" : "User") " />
+                                    @Html.HiddenFor(model => model.Role) <!-- Thêm hidden field để giữ giá trị của trường Role -->
                                 </div>
                                 <a>
                                     <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
                                 </a>
                                 <hr>
                             }
-                            <a style="background-color:#e74a3b;" class="btn btn-primary btn-user btn-block " @Html.ActionLink("Logout", "Logout", "Login")>
-
-                            </a>
+                            <a style="background-color:#e74a3b;" class="btn btn-primary btn-user btn-block" @Html.ActionLink("Logout", "Logout", "Login")></a>
                         </div>
                     </div>
                 </div>

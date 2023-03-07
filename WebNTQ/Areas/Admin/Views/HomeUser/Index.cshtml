@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WebNTQ.Areas.Admin.Models.ProfileModel
+@{
     ViewBag.Title = "Trang chủ User";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
@@ -66,5 +67,68 @@
 
 }
 @section bodymain{
+    <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+
+            <div class="col-lg-6">
+                @if (TempData["EditUserMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        </button> <h5><i class="icon fas fa-check"></i> @TempData["EditUserMessage"]</h5>
+                    </div>
+                }
+
+                @Html.AntiForgeryToken()
+                <div class="panel panel-default">
+                    <div class="card shadow mb-4">
+                        <div class="p-5">
+                            <div class="card-header py-3">
+                                <h2 class="m-0 font-weight-bold text-primary" style="text-align:center;">My profile</h2>
+                            </div>
+                            @using (Html.BeginForm("Index", "HomeAdmin", FormMethod.Post))
+                            {
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.UserName, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control form-control-user", @autofocus = "autofocus", @placeholder = "Type your password" })
+
+                                </div>
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.Password, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control form-control-user", @placeholder = "Type your password" })
+
+                                </div>
+                                <div class="form-group">
+
+                                    @Html.LabelFor(model => model.ConfirmPassword, new { htmlAttribute = new { @class = "form-control form-control-user" } })
+                                    @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Type your confirm password" })
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <input type="text" class="form-control form-control-user" readonly="readonly" value="@Model.Email" />
+                                    @Html.HiddenFor(model => model.Email)
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Type</label>
+                                    <input type="text" class="form-control form-control-user" readonly="readonly" value="@(Model.Role == 1 ? "Admin" : "User") " />
+                                    @Html.HiddenFor(model => model.Role) <!-- Thêm hidden field để giữ giá trị của trường Role -->
+                                </div>
+                                <a>
+                                    <input type="submit" value="Update" class="btn btn-primary btn-user btn-block" />
+                                </a>
+                                <hr>
+                            }
+                            <a style="background-color:#e74a3b;" class="btn btn-primary btn-user btn-block" @Html.ActionLink("Logout", "Logout", "Login")></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 }
