@@ -59,7 +59,7 @@ namespace WebNTQ.Areas.Admin.Controllers
 
                 return View("Index");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Xử lý ngoại lệ
                 ModelState.AddModelError("", "Đã có lỗi xảy ra, vui lòng thử lại sau!");
@@ -106,7 +106,8 @@ namespace WebNTQ.Areas.Admin.Controllers
                             ID = model.ID,
                             Email = model.Email,
                             UserName = model.UserName,
-                            Password = model.Password,                           
+                            Password = model.Password,
+                            Status = model.Status,
                         };
                         dao.Update(user);
                         TempData["EditUserMessage"] = "Update thông tin user thành công";

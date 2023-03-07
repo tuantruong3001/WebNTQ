@@ -147,12 +147,14 @@
                                                 <td>@(item.CreateAt == null ? "" : item.CreateAt.Value.ToString("dd/MM/yyyy"))</td>
                                                 <td>@(item.UpdateAt == null ? "" : item.UpdateAt.Value.ToString("dd/MM/yyyy"))</td>
                                                 <td>@(item.DeleteAt == null ? "" : item.DeleteAt.Value.ToString("dd/MM/yyyy"))</td>
-                                                <td><img style="width: 10%; height: auto;" src="@item.Path"></td>
+                                                <td><img style="width: 30%; height: auto;" src="@item.Path"></td>
                                                 <td><a style="text-decoration:none" data-id="@item.ID">@(item.Trending == true ? "Top Trending" : "None Trending")</a></td>
                                                 <td><a style="text-decoration:none" data-id="@item.ID">@(item.Status == true ? "Chưa xóa" : " Đã Xóa")</a></td>
                                                 <td>
-                                                    <a class="btn btn-success" style="text-decoration:none; " href="/Admin/Product/Edit/@item.ID"><i class="fa fa-edit"></i> Edit</a> |
+
+                                                    <a class="btn btn-success" style="text-decoration:none; " href="/Admin/Product/Edit/@item.ID"><i class="fa fa-edit"></i> Edit</a>
                                                     <a style="text-decoration: none;" href="@Url.Action("Delete", "Product", new { id = item.ID })" class="btn btn-danger" onclick="return confirm('Xác nhận xoá?')"><i class="fas fa-trash"></i> Delete</a>
+
                                                 </td>
 
                                             </tr>

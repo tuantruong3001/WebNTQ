@@ -35,6 +35,7 @@ namespace Model.Dao
                 {
                     user.UserName = entity.UserName;
                     user.Password = entity.Password;
+                    user.Status = true;
                     user.UpdateAt = DateTime.Now;
                     db.SaveChanges();
                     return true;
