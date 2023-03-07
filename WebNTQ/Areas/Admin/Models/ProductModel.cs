@@ -21,6 +21,8 @@ namespace WebNTQ.Areas.Admin.Models
         public string Detail { get; set; }
         public int ID { get; set; }
 
+        [StringLength(150)]
+        public string Path { get; set; }
         public bool? Trending { get; set; }
 
         public double? NumberViews { get; set; }

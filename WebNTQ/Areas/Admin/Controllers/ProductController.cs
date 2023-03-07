@@ -33,6 +33,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                     Slug = createmodel.Slug,
                     Detail = createmodel.Detail,
                     Price = createmodel.Price,
+                    Path = createmodel.Path,
                     Trending = Trending,
                     CreateAt = DateTime.Now,
                     Status = true,
@@ -47,7 +48,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                 return View(createmodel);
             }
         }
-        // sửa product
+        // truyền product vào => sửa product
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -61,6 +62,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                 Slug = product.Slug,
                 Detail = product.Detail,
                 Trending = product.Trending,
+                Path = product.Path,
                 Price = product.Price,
                 UpdateAt = product.UpdateAt
             };
@@ -91,6 +93,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         Slug = model.Slug,
                         Detail = model.Detail,
                         Trending = model.Trending,
+                        Path = model.Path,
                         Price = model.Price,
                         UpdateAt = model.UpdateAt,
                         Status = true,
@@ -107,6 +110,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
             return View(model);
         }
+        // xoá product
         public ActionResult Delete(int id)
         {
             ProductDao productDao = new ProductDao();

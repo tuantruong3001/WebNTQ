@@ -94,6 +94,18 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.Email == email);
         }
+        public bool CheckUserName(string userName)
+        {
+            var name = db.Users.SingleOrDefault(x => x.UserName == userName);
+            if (name == null) return true;
+            return false;
+        }
+        public bool CheckEmail(string email)
+        {
+            var user = db.Users.SingleOrDefault(x => x.Email == email);
+            if (user == null) return true;
+            return false;
+        }
         //check khi thêm mới user or đk
         public int RegisterCheck(string email, string user)
         {
