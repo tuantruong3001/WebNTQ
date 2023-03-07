@@ -2669,11 +2669,13 @@
     <Content Include="Assets\images\dress-shirt-img.png" />
     <Content Include="Assets\images\flag-france.png" />
     <Content Include="Assets\images\flag-uk.png" />
+    <Content Include="Assets\images\flag-vn.png" />
     <Content Include="Assets\images\footer-logo.png" />
     <Content Include="Assets\images\jhumka-img.png" />
     <Content Include="Assets\images\kangan-img.png" />
     <Content Include="Assets\images\laptop-img.png" />
     <Content Include="Assets\images\logo.png" />
+    <Content Include="Assets\images\logoNTQ.png" />
     <Content Include="Assets\images\mail-icon.png" />
     <Content Include="Assets\images\map-icon.png" />
     <Content Include="Assets\images\mobile-img.png" />
@@ -2682,6 +2684,7 @@
     <Content Include="Assets\images\toggle-icon.png" />
     <Content Include="Assets\images\tshirt-img.png" />
     <Content Include="Assets\images\user-icon.png" />
+    <Content Include="Assets\images\vietnam.png" />
     <Content Include="Assets\images\women-clothes-img.png" />
     <Content Include="Assets\js\bootstrap.bundle.js" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
