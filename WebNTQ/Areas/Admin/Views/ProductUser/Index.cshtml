@@ -1,0 +1,121 @@
+﻿@model PagedList.IPagedList<Model.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section jsFooter{
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
+}
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item active">
+            <a class="nav-link" href="/Home/Index">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>My Review</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>My Wishlists</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/HomeUser">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+
+}
+@section bodymain{
+
+    <!-- product section start -->
+    <div class="product_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="product_taital"> Products</h1>
+                </div>
+            </div>
+
+            <div class="product_section_2 layout_padding container">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6" @*style="display: flex"*@>
+                            <div class="product_box">
+                                <h4 class="bursh_text">@item.ProductName</h4>
+                                <p class="lorem_text">@item.Slug </p>
+                                <img src="@item.Path" class="image_1">
+                                <div class="btn_main">
+                                    <div class="buy_bt">
+                                        <ul>
+                                            <li class="active"><a href="#">Buy Now</a></li>
+                                            <li><a href="#">Wishlist</a></li>
+                                        </ul>
+                                    </div>
+                                    <h3 class="price_text">Price @item.Price</h3>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    }
+                </div>
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString, rolFiler = ViewBag.Trending }))
+            </div>
+        </div>
+    </div>
+    <!-- product section end -->
+    <!-- footer section end -->
+    <!-- copyright section start -->
+}
+
