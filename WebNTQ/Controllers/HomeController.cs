@@ -10,7 +10,7 @@ namespace WebNTQ.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string searchString, bool roleFiler = false, int page = 1, int pageSize = 8)
+        public ActionResult Index(string searchString, bool roleFiler = false, int page = 1, int pageSize = 9)
         {
             var dao = new ProductDao();
             var model = dao.ListAllPaging(searchString, roleFiler, page, pageSize);

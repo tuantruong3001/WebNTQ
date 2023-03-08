@@ -455,7 +455,7 @@ button {
 .btn_main {
     width: 100%;
     display: flex;
-    background-color: #000;
+    background-color: darkgrey;
     height: auto;
     padding: 20px 10px 13px 10px;
 }

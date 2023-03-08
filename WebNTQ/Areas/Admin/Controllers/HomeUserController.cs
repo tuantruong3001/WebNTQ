@@ -61,7 +61,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                         };
                         dao.Update(user);
                         TempData["EditUserMessage"] = "Sửa thông tin thành công";
-                        return RedirectToAction("Index", "HomeAdmin");
+                        return RedirectToAction("Index", "HomeUser");
                     }
                     if (!checkUserName) { ModelState.AddModelError("", "UserName đã tồn tại"); };
                 }
