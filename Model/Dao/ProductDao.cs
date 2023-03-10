@@ -18,29 +18,29 @@ namespace Model.Dao
         {
             db = new NtqDbContext();
         }
-        public int Insert(Product entity)
+        public int Insert(Product product)
         {
-            db.Products.Add(entity);
+            db.Products.Add(product);
             db.SaveChanges();
-            return entity.ID;
+            return product.ID;
         }
         // cập nhật product
-        public bool Update(Product entity)
+        public bool Update(Product product)
         {
             try
             {
-                var product = db.Products.Find(entity.ID);
+                var productUpdate = db.Products.Find(product.ID);
                 if (product != null)
                 {
-                    product.ProductName = entity.ProductName;
-                    product.Slug = entity.Slug;
-                    product.Detail = entity.Detail;
-                    product.Price = entity.Price;
-                    product.Trending = entity.Trending;
-                    product.Path = entity.Path;
-                    product.MetaKey = entity.MetaKey;
-                    product.Status = true;
-                    product.UpdateAt = DateTime.Now;
+                    productUpdate.ProductName = product.ProductName;
+                    productUpdate.Slug = product.Slug;
+                    productUpdate.Detail = product.Detail;
+                    productUpdate.Price = product.Price;
+                    productUpdate.Trending = product.Trending;
+                    productUpdate.Path = product.Path;
+                    productUpdate.MetaKey = product.MetaKey;
+                    productUpdate.Status = true;
+                    productUpdate.UpdateAt = DateTime.Now;
                     db.SaveChanges();
                     return true;
                 }
@@ -75,10 +75,10 @@ namespace Model.Dao
         {
             return db.Products.Find(id);
         }
-        public Product GetByName(string name)
+       /* public Product GetByName(string name)
         {
             return db.Products.SingleOrDefault(x => x.ProductName == name);
-        }
+        }*/
         //search theo detail & nameproduct
         public IEnumerable<Product> ListAllPaging(string searchString, bool roleFilter, int page, int pageSize)
         {

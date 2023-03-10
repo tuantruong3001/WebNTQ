@@ -19,25 +19,25 @@ namespace Model.Dao
             db = new NtqDbContext();
         }
         // thêm mới
-        public int Insert(User entity)
+        public int Insert(User user)
         {
-            db.Users.Add(entity);
+            db.Users.Add(user);
             db.SaveChanges();
-            return entity.ID;
+            return user.ID;
         }
         // cập nhật
-        public bool Update(User entity)
+        public bool Update(User user)
         {
             try
             {
-                var user = db.Users.Find(entity.ID);
+                var userUpdate = db.Users.Find(user.ID);
                 if (user != null)
                 {
-                    user.UserName = entity.UserName;
-                    user.Password = entity.Password;
-                    user.Email = entity.Email;
-                    user.Status = true;
-                    user.UpdateAt = DateTime.Now;
+                    userUpdate.UserName = user.UserName;
+                    userUpdate.Password = user.Password;
+                    userUpdate.Email = user.Email;
+                    userUpdate.Status = true;
+                    userUpdate.UpdateAt = DateTime.Now;
                     db.SaveChanges();
                     return true;
                 }
@@ -46,14 +46,14 @@ namespace Model.Dao
             catch (Exception) { return false; }
         }
         //update profile(doing)
-        public bool UpdateProfile(User entity)
+        public bool UpdateProfile(User user)
         {
             try
             {
-                var user = db.Users.Find(entity.ID);
-                user.UserName = entity.UserName;
-                user.Password = entity.Password;
-                user.UpdateAt = DateTime.Now;
+                var userUpdate = db.Users.Find(user.ID);
+                userUpdate.UserName = user.UserName;
+                userUpdate.Password = user.Password;
+                userUpdate.UpdateAt = DateTime.Now;
                 db.SaveChanges();
                 return true;
             }
