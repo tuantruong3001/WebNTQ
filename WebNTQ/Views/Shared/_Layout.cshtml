@@ -42,6 +42,10 @@
     </style>
 </head>
 <body>
+    @{
+        var session = (WebNTQ.Common.UserLogin)Session[WebNTQ.Common.CommonConstants.USER_SESSION];
+
+    }
     <!-- banner bg main start -->
     <div class="banner_bg_main">
         <!-- header top section start -->
@@ -52,7 +56,15 @@
                         <div class="custom_menu">
                             <ul>
                                 <li>
-                                    <a href="/Admin/Login/Index" id="loginLink">Login</a>
+                                    @if (session == null)
+                                    {
+                                        <a href="/Admin/Login/Index">Login</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })">My Profile</a>
+
+                                    }
                                 </li>
                                 <li><a href="#">Gift Ideas</a></li>
                                 <li><a href="#">New Releases</a></li>
@@ -152,7 +164,19 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a></div>
+                                    <div class="buynow_bt">
+
+                                        @if (session == null)
+                                        {
+                                            <a href="/Admin/Login/Index">Login</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })">My Profile</a>
+
+                                        }
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +184,17 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a> </div>
+                                    <div class="buynow_bt">
+                                        @if (session == null)
+                                        {
+                                            <a href="/Admin/Login/Index">Login</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })">My Profile</a>
+
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +202,17 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                                    <div class="buynow_bt"><a href="/Admin/Login/Index">Login</a></div>
+                                    <div class="buynow_bt">
+                                        @if (session == null)
+                                        {
+                                            <a href="/Admin/Login/Index">Login</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Index", "HomeAdmin", new { area = "Admin" })">My Profile</a>
+
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

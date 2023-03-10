@@ -69,7 +69,6 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 // Xóa session hiện tại
                 Session.Clear();
-
                 // Chuyển hướng đến trang đăng nhập
                 return RedirectToAction("Login", "Login");
             }
