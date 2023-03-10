@@ -101,7 +101,7 @@
                                 <div class="form-group">
 
                                     @Html.LabelFor(model => model.ConfirmPassword, new { htmlAttribute = new { @class = "form-control form-control-user" } })
-                                    @Html.TextBoxFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Type your confirm password" })
+                                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control form-control-user", @placeholder = "Type your confirm password" })
 
                                 </div>
                                 <div class="form-group">

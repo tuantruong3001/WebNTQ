@@ -15,10 +15,10 @@ namespace WebNTQ.Areas.Admin.Controllers
         // GET: Admin/HomeUser
         public ActionResult Index()
         {
-            var dao = new UserDao();
+            var userDao = new UserDao();
             var model = (UserLogin)Session[CommonConstants.USER_SESSION];
-            var user = dao.GetByID(model.UserID);
-            var result = new ProfileModel
+            var user = userDao.GetById(model.UserID);
+            var profileModel = new ProfileModel
             {
                 ID = user.ID,
                 UserName = user.UserName,
@@ -28,7 +28,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                 UpdateAt = user.UpdateAt,
             };
 
-            return View(result);
+            return View(profileModel);
         }
         [HttpPost]
         public ActionResult Index(ProfileModel model)
@@ -37,19 +37,28 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dao = new UserDao();
-                    var result = dao.GetByEmail(model.Email);
-                    model.ID = result.ID;
-                    bool checkUserName;
+                    var userDao = new UserDao();
+                    var userByEmail = userDao.GetByEmail(model.Email);
+                    model.ID = userByEmail.ID;
+                    bool isUserNameAvailable;
+
                     if (model.ConfirmPassword != model.Password)
                     {
                         ModelState.AddModelError("", "ConfirmPassword và Password không khớp");
                         return View("Index");
                     }
-                    var userOld = dao.GetByID(model.ID);
-                    if (model.UserName == userOld.UserName) checkUserName = true;
-                    else checkUserName = dao.CheckUserName(model.UserName);
-                    if (checkUserName)
+
+                    var userOld = userDao.GetById(model.ID);
+                    if (model.UserName == userOld.UserName)
+                    {
+                        isUserNameAvailable = true;
+                    }
+                    else
+                    {
+                        isUserNameAvailable = userDao.CheckUserName(model.UserName);
+                    }
+
+                    if (isUserNameAvailable)
                     {
                         var user = new User
                         {
@@ -57,23 +66,25 @@ namespace WebNTQ.Areas.Admin.Controllers
                             Email = model.Email,
                             UserName = model.UserName,
                             Password = model.Password,
-                            Role = model.Role,
-
+                            Role = model.Role
                         };
-                        dao.Update(user);
+                        userDao.Update(user);
                         TempData["EditUserMessage"] = "Sửa thông tin thành công";
                         return RedirectToAction("Index", "HomeUser");
                     }
-                    if (!checkUserName) { ModelState.AddModelError("", "UserName đã tồn tại"); };
+
+                    ModelState.AddModelError("", "UserName đã tồn tại");
                 }
+
                 return View(model);
             }
+
             catch (Exception ex)
             {
                 ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
                 return View(model);
             }
-        }     
+        }
 
     }
 }

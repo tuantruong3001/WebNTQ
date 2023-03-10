@@ -88,7 +88,7 @@ namespace Model.Dao
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
-        public User GetByID(int id)
+        public User GetById(int id)
         {
             return db.Users.Find(id);
         }

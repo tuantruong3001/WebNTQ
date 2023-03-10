@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="~/Assets/css/style.css">
     <!-- Responsive-->
     <link rel="stylesheet" href="~/Assets/css/responsive.css">
+    
     <!-- fevicon -->
     <link rel="icon" href="~/Assets/images/fevicon.png" type="image/gif" />
     <!-- Scrollbar Custom CSS -->
@@ -44,7 +45,7 @@
 <body>
     @{
         var session = (WebNTQ.Common.UserLogin)Session[WebNTQ.Common.CommonConstants.USER_SESSION];
-
+       
     }
     <!-- banner bg main start -->
     <div class="banner_bg_main">
@@ -66,10 +67,10 @@
 
                                     }
                                 </li>
-                                <li><a href="#">Gift Ideas</a></li>
-                                <li><a href="#">New Releases</a></li>
-                                <li><a href="#">Today's Deals</a></li>
-                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="/Admin/ProductUser/Index">Product</a></li>
+                                <li><a href="#">My Reviews</a></li>
+                                <li><a href="#">WishList</a></li>
                             </ul>
                         </div>
                     </div>

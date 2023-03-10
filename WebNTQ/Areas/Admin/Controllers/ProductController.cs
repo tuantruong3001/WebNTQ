@@ -18,7 +18,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(ProductModel createmodel, bool Trending)
+        public ActionResult Create(ProductModel createModel, bool isTrending)
         {
             if (!ModelState.IsValid)
             {
@@ -26,26 +26,26 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
             try
             {
-                var dao = new ProductDao();
+                var productDao = new ProductDao();
                 var product = new Product
                 {
-                    ProductName = createmodel.ProductName,
-                    Slug = createmodel.Slug,
-                    Detail = createmodel.Detail,
-                    Price = createmodel.Price,
-                    Path = createmodel.Path,
-                    Trending = Trending,
+                    ProductName = createModel.ProductName,
+                    Slug = createModel.Slug,
+                    Detail = createModel.Detail,
+                    Price = createModel.Price,
+                    Path = createModel.Path,
+                    Trending = isTrending,
                     CreateAt = DateTime.Now,
                     Status = true,
                 };
-                dao.Insert(product);
+                productDao.Insert(product);
                 TempData["UserMessage"] = "Thêm mới thông tin product thành công";
                 return RedirectToAction("Index", "ListProduct");
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
-                return View(createmodel);
+                return View(createModel);
             }
         }
         // truyền product vào => sửa product
@@ -74,7 +74,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             return View(productModel);
         }
         [HttpPost]
-        public ActionResult Edit(ProductModel model)
+        public ActionResult Edit(ProductModel productModel)
         {
             if (ModelState.IsValid)
             {
@@ -82,20 +82,20 @@ namespace WebNTQ.Areas.Admin.Controllers
                 {
                     ViewBag.TrendingOptions = new List<SelectListItem>
                     {
-                        new SelectListItem { Value = "True", Text = "Top Trending", Selected = model.Trending == true },
-                        new SelectListItem { Value = "False", Text = "None Trending", Selected = model.Trending == false },
+                        new SelectListItem { Value = "True", Text = "Top Trending", Selected = productModel.Trending == true },
+                        new SelectListItem { Value = "False", Text = "None Trending", Selected = productModel.Trending == false },
                     };
                     var productDao = new ProductDao();
                     var product = new Product
                     {
-                        ID = model.ID,
-                        ProductName = model.ProductName,
-                        Slug = model.Slug,
-                        Detail = model.Detail,
-                        Trending = model.Trending,
-                        Path = model.Path,
-                        Price = model.Price,
-                        UpdateAt = model.UpdateAt,
+                        ID = productModel.ID,
+                        ProductName = productModel.ProductName,
+                        Slug = productModel.Slug,
+                        Detail = productModel.Detail,
+                        Trending = productModel.Trending,
+                        Path = productModel.Path,
+                        Price = productModel.Price,
+                        UpdateAt = productModel.UpdateAt,
                         Status = true,
                     };
                     productDao.Update(product);
@@ -105,10 +105,10 @@ namespace WebNTQ.Areas.Admin.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
-                    return View(model);
+                    return View(productModel);
                 }
             }
-            return View(model);
+            return View(productModel);
         }
         // xoá product
         public ActionResult Delete(int id)

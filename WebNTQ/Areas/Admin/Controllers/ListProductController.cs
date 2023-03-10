@@ -11,11 +11,11 @@ namespace WebNTQ.Areas.Admin.Controllers
     public class ListProductController : BaseController
     {
         // GET: Admin/ListProduct       
-        private readonly ProductDao _dao = new ProductDao();
+        private readonly ProductDao _productDao = new ProductDao();
 
         public ActionResult Index(string searchString,bool roleFilter = false , int page = 1, int pageSize = 15)
         {
-            var model = _dao.ListAllPaging(searchString, roleFilter, page, pageSize);
+            var model = _productDao.ListAllPaging(searchString, roleFilter, page, pageSize);
 
             if (roleFilter)
             {
@@ -23,8 +23,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
            
             ViewBag.SearchString = searchString;
-            ViewBag.RoleFilter = roleFilter;
-     
+            ViewBag.RoleFilter = roleFilter;    
             return View(model);
         }
        

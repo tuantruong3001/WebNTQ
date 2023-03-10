@@ -17,7 +17,7 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Register(RegisterModel registermodel)
+        public ActionResult Register(RegisterModel registerModel)
         {
 
             if (!ModelState.IsValid)
@@ -26,9 +26,9 @@ namespace WebNTQ.Areas.Admin.Controllers
             }
 
             var dao = new UserDao();
-            var result = dao.RegisterCheck(registermodel.Email, registermodel.UserName);
+            var result = dao.RegisterCheck(registerModel.Email, registerModel.UserName);
 
-            if (registermodel.ConfirmPassword != registermodel.Password)
+            if (registerModel.ConfirmPassword != registerModel.Password)
             {
                 ModelState.AddModelError("", "ConfirmPassword phải trùng với Password");
                 return View("Index");
@@ -45,9 +45,9 @@ namespace WebNTQ.Areas.Admin.Controllers
                 case 1:
                     var user = new User
                     {
-                        UserName = registermodel.UserName,
-                        Email = registermodel.Email,
-                        Password = registermodel.Password,
+                        UserName = registerModel.UserName,
+                        Email = registerModel.Email,
+                        Password = registerModel.Password,
                         Role = 0,
                         CreateAt = DateTime.Now,
                         Status = true,

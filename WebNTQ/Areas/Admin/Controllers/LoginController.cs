@@ -22,13 +22,13 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 return View("Index");
             }
-            var dao = new UserDao();
-            var loginResult = dao.Login(model.Password, model.Email);
+            var userDao = new UserDao();
+            var loginResult = userDao.Login(model.Password, model.Email);
 
             switch (loginResult)
             {
                 case 1:
-                    var user = dao.GetByEmail(model.Email);
+                    var user = userDao.GetByEmail(model.Email);
                     var userSession = new UserLogin
                     {
                         UserName = user.UserName,
@@ -68,8 +68,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             try
             {
                 // Xóa session hiện tại
-                Session.Clear();
-                // Chuyển hướng đến trang đăng nhập
+                Session.Clear();               
                 return RedirectToAction("Login", "Login");
             }
             catch (Exception ex)

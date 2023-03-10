@@ -19,7 +19,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(CreateModel createmodel)
+        public ActionResult Create(CreateModel createModel)
         {
             try
             {
@@ -28,8 +28,8 @@ namespace WebNTQ.Areas.Admin.Controllers
                     return View("Index");
                 }
 
-                var dao = new UserDao();
-                var result = dao.RegisterCheck(createmodel.Email, createmodel.UserName);
+                var userDao = new UserDao();
+                var result = userDao.RegisterCheck(createModel.Email, createModel.UserName);
 
                 switch (result)
                 {
@@ -42,14 +42,14 @@ namespace WebNTQ.Areas.Admin.Controllers
                     case 1:
                         var user = new User
                         {
-                            UserName = createmodel.UserName,
-                            Email = createmodel.Email,
-                            Password = createmodel.Password,
+                            UserName = createModel.UserName,
+                            Email = createModel.Email,
+                            Password = createModel.Password,
                             Role = 0,
                             CreateAt = DateTime.Now,
                             Status = true,
                         };
-                        dao.Insert(user);
+                        userDao.Insert(user);
                         TempData["UserMessage"] = "Thêm mới thông tin user thành công";
                         return RedirectToAction("Index", "ListUser");
                     default:
@@ -73,7 +73,7 @@ namespace WebNTQ.Areas.Admin.Controllers
             try
             {
                 var userDao = new UserDao();
-                var user = userDao.GetByID(id);
+                var user = userDao.GetById(id);
 
                 string role = (user.Role == 0) ? "User" : "Admin";
                 ViewBag.Role = role;
@@ -101,10 +101,10 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dao = new UserDao();
-                    bool checkUserName = dao.CheckUserName(model.UserName);
-                    bool checkEmail = dao.CheckEmail(model.Email);
-                    var userOld = dao.GetByID(model.ID);
+                    var userDao = new UserDao();
+                    bool checkUserName = userDao.CheckUserName(model.UserName);
+                    bool checkEmail = userDao.CheckEmail(model.Email);
+                    var userOld = userDao.GetById(model.ID);
 
                     if (model.UserName == userOld.UserName) checkUserName = true;
                     if (model.Email == userOld.Email) checkEmail = true;
@@ -118,7 +118,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                             Password = model.Password,
                             Status = model.Status,
                         };
-                        dao.Update(user);
+                        userDao.Update(user);
                         TempData["EditUserMessage"] = "Update thông tin user thành công";
                         return RedirectToAction("Index", "ListUser");
                     }

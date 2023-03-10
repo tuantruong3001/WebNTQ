@@ -16,8 +16,8 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             try
             {
-                var dao = new ProductDao();
-                var model = dao.ListAllPaging(searchString, roleFiler, page, pageSize);
+                var productDao = new ProductDao();
+                var model = productDao.ListAllPaging(searchString, roleFiler, page, pageSize);
                 if (roleFiler)
                 {
                     model = model.Where(x => x.Trending == true).ToPagedList(page, pageSize);
@@ -37,8 +37,8 @@ namespace WebNTQ.Areas.Admin.Controllers
         {
             try
             {
-                var dao = new ProductDao();
-                var product = dao.ViewDetail(id);
+                var productDao = new ProductDao();
+                var product = productDao.ViewDetail(id);
                 var sessionUser = (UserLogin)Session[CommonConstants.USER_SESSION];
                 if (sessionUser != null) { ViewBag.UserID = sessionUser.UserID; }
                 return View(product);
