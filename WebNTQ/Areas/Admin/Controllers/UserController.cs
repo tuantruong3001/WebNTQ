@@ -70,21 +70,29 @@ namespace WebNTQ.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var userDao = new UserDao();
-            var user = userDao.GetByID(id);
-
-            string role = (user.Role == 0) ? "User" : "Admin";
-            ViewBag.Role = role;
-
-            var userModel = new CreateModel
+            try
             {
-                ID = user.ID,
-                UserName = user.UserName,
-                Email = user.Email,
-                Password = user.Password,
-                UpdateAt = user.UpdateAt
-            };
-            return View(userModel);
+                var userDao = new UserDao();
+                var user = userDao.GetByID(id);
+
+                string role = (user.Role == 0) ? "User" : "Admin";
+                ViewBag.Role = role;
+
+                var userModel = new CreateModel
+                {
+                    ID = user.ID,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = user.Password,
+                    UpdateAt = user.UpdateAt
+                };
+                return View(userModel);
+            }
+            catch (Exception)
+            {
+                return View("Index");
+            }
+
         }
         [HttpPost]
         public ActionResult Edit(CreateModel model)
@@ -93,10 +101,11 @@ namespace WebNTQ.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var dao = new UserDao();                                       
+                    var dao = new UserDao();
                     bool checkUserName = dao.CheckUserName(model.UserName);
                     bool checkEmail = dao.CheckEmail(model.Email);
                     var userOld = dao.GetByID(model.ID);
+
                     if (model.UserName == userOld.UserName) checkUserName = true;
                     if (model.Email == userOld.Email) checkEmail = true;
                     if (checkUserName && checkEmail)

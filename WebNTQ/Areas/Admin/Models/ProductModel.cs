@@ -22,6 +22,7 @@ namespace WebNTQ.Areas.Admin.Models
         public int ID { get; set; }
 
         [StringLength(150)]
+        [Required(ErrorMessage = "Ảnh không được để trống!")]
         public string Path { get; set; }
         public bool? Trending { get; set; }
 

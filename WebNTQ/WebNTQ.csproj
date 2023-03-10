@@ -3107,6 +3107,7 @@
     <Content Include="Assets\admin\js\bootstrap.bundle.min.js.map" />
     <Content Include="Assets\admin\js\bootstrap.js.map" />
     <Content Include="Assets\admin\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\ProductUser\Detail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3131,9 +3132,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

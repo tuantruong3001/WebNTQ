@@ -1,0 +1,160 @@
+﻿
+@model Model.EF.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+@section sidebar{
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item active">
+            <a class="nav-link" href="/Home/Index">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/ProductUser/Index">
+                <i class="fas fa-fw fa-user"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-comment"></i>
+                <span>My Review</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>My Wishlists</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <hr class="sidebar-divider  my-0">
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/Admin/HomeUser">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>My Profile</span>
+            </a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+
+}
+<main role="main">
+    <a href="/san-pham/@Model.Slug-@Model.ID"> @Model.ProductName</a>
+    <div class="container mt-4">
+        <div id="thongbao" class="alert alert-danger d-none face" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="container-fluid">
+
+                <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
+                      action="/php/twig/frontend/giohang/themvaogiohang">
+                    <input type="hidden" name="sp_ma" id="sp_ma" value="@Model.NumberViews">
+                    <input type="hidden" name="sp_ten" id="sp_ten" value="@Model.ProductName">
+                    <input type="hidden" name="sp_gia" id="sp_gia" value="@Model.Price">
+                    <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
+
+                    <div class="container-fluid">
+                        <h3>Thông tin chi tiết về Sản phẩm</h3>
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane" id="pic-1">
+                                    <img src="@Model.Path">
+                                </div>
+
+                                <ul class="preview-thumbnail nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#" data-target="#pic-1" data-toggle="tab" class="">
+                                            <img src="@Model.Path">
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="details col-md-6">
+                                <h3 class="product-title">@Model.ProductName</h3>
+                                <div class="rating">
+                                    <div class="stars">
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <span class="review-no"></span>
+                                </div>
+                                <p class="product-description">@Model.Detail</p>
+                                <h4 class="price">Giá hiện tại: <span>$@Model.Price</span></h4>
+                                <p class="vote">
+                                    <strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
+                                    <strong>
+                                        Uy
+                                        tín
+                                    </strong>!
+                                </p>
+
+
+                                <div class="form-group">
+                                    <label for="soluong">Số lượng đặt mua:</label>
+                                    <input type="number" class="form-control" id="soluong" name="soluong">
+
+                                </div>
+                                <div class="action">
+                                    <button type="button" class="btn btn-outline-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+                                        </svg>
+                                        Wishlist
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+
+</main>

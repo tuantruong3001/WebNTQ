@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using WebNTQ.Common;
 
 namespace WebNTQ.Controllers
 {
@@ -22,6 +23,19 @@ namespace WebNTQ.Controllers
             ViewBag.Trending = roleFiler;
             return View(model);
         }
-
+       public ActionResult Detail(int id) 
+        {
+            try
+            {
+                var dao = new ProductDao();
+                var product = dao.ViewDetail(id);              
+                return View(product);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
     }
 }

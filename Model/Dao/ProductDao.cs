@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -96,6 +97,11 @@ namespace Model.Dao
             }
            
             return model.OrderBy(x => x.NumberViews).ToPagedList(page, pageSize);
+        }
+     
+        public Product ViewDetail(int id)
+        { 
+            return db.Products.Find(id);
         }
     }
 }

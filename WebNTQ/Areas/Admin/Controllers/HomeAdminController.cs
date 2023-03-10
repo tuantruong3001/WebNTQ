@@ -20,20 +20,27 @@ namespace WebNTQ.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            var dao = new UserDao();
-            var model = (UserLogin)Session[CommonConstants.USER_SESSION];
-            var user = dao.GetByID(model.UserID);
-            var result = new ProfileModel
+            try
             {
-                ID = user.ID,
-                UserName = user.UserName,
-                Email = user.Email,
-                Password = user.Password,
-                Role = user.Role,
-                UpdateAt = user.UpdateAt,
-            };
+                var dao = new UserDao();
+                var model = (UserLogin)Session[CommonConstants.USER_SESSION];
+                var user = dao.GetByID(model.UserID);
+                var result = new ProfileModel
+                {
+                    ID = user.ID,
+                    UserName = user.UserName,
+                    Email = user.Email,
+                    Password = user.Password,
+                    Role = user.Role,
+                    UpdateAt = user.UpdateAt,
+                };
 
-            return View(result);
+                return View(result);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Index(ProfileModel model)

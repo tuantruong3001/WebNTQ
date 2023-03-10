@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebNTQ.Areas.Admin.Models;
+using WebNTQ.Common;
 
 namespace WebNTQ.Areas.Admin.Controllers
 {
@@ -15,7 +16,7 @@ namespace WebNTQ.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var dao = new UserDao();
-            var model = (WebNTQ.Common.UserLogin)Session[WebNTQ.Common.CommonConstants.USER_SESSION];
+            var model = (UserLogin)Session[CommonConstants.USER_SESSION];
             var user = dao.GetByID(model.UserID);
             var result = new ProfileModel
             {
@@ -72,7 +73,7 @@ namespace WebNTQ.Areas.Admin.Controllers
                 ModelState.AddModelError("", $"Đã có lỗi xảy ra, vui lòng thử lại sau: {ex.Message}");
                 return View(model);
             }
-        }
+        }     
 
     }
 }
